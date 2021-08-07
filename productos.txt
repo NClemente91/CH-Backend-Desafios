@@ -1,0 +1,1 @@
+[{"title":"yerba","price":180,"thumbmail":"/img/yerba.png","id":1},{"title":"fideos","price":180,"thumbmail":"/img/fideos.png","id":2},{"title":"Harina","price":187,"thumbmail":"/img/harina.jpg","id":3}]
