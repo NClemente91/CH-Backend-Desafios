@@ -1,0 +1,31 @@
+<div class="contenedor">
+  <h1 class="title-vista">Vista de Productos</h1>
+  <div>
+    {{#if productExist}}
+      <table class="table table-dark table-striped table-format">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Foto</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each productos}}
+            <tr>
+              <td>{{this.title}}</td>
+              <td>{{this.price}}</td>
+              <td><img
+                  src="{{this.thumbnail}}"
+                  alt="Imagen del producto"
+                  class="img-producto"
+                /></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p class="no-prod">No se encontraron productos</p>
+    {{/if}}
+  </div>
+</div>

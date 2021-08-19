@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Desafío - API RESTful</title>
+  </head>
+  <body>
+    <div class="container-form">
+      <h1 class="title-product">Ingrese Producto</h1>
+      <form action="http://localhost:8080/api/productos/guardar/" method="post">
+        <div class="mb-3">
+          <label for="title" class="form-label">Nombre</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            id="title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Precio</label>
+          <input
+            type="number"
+            name="price"
+            class="form-control"
+            id="price"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="thumbnail" class="form-label">Foto URL</label>
+          <input
+            type="text"
+            name="thumbnail"
+            class="form-control"
+            id="thumbnail"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">ENVIAR</button>
+      </form>
+    </div>
+  </body>
+</html>
