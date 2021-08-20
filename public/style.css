@@ -1,0 +1,37 @@
+.container-form,
+.contenedor {
+  width: 400px;
+  margin: 20px auto;
+  background: rgb(189, 186, 186);
+}
+
+.container-form {
+  padding: 20px;
+}
+
+.title-product,
+.title-vista {
+  text-align: center;
+}
+
+.title-vista {
+  color: white;
+  background: #212529;
+  height: 60px;
+}
+
+.img-producto {
+  width: 100px;
+  height: 100px;
+}
+
+.table-format {
+  text-align: center;
+}
+
+.no-prod {
+  width: 80%;
+  height: 50px;
+  margin: 15px auto;
+  font-size: 20px;
+}
