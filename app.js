@@ -42,13 +42,12 @@ class Server {
   ws = () => {
     this.io.on("connection", (socket) => {
       console.log("Cliente conectado: " + socket.id);
-      //ENVIO PRODUCTOS EXISTENTES
+
       socket.emit("productosExistentes", { value: productos });
 
-      //ENVIO PRODUCTOS ACTUALIZADOS
       socket.on("notificacion", (data) => {
         if (data) {
-          this.io.emit("productosExistentes", { value: data.value });
+          this.io.sockets.emit("productosExistentes", { value: productos });
         }
       });
     });
