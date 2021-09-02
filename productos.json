@@ -1,0 +1,14 @@
+[
+  {
+    "title": "naranja",
+    "price": 180,
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/graphorama-fruits-7/128/orange-256.png",
+    "id": 1
+  },
+  {
+    "title": "kiwi",
+    "price": 125,
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/fruit-nut/512/28-kiwi-fruit-food-128.png",
+    "id": 2
+  }
+]

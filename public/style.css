@@ -1,0 +1,57 @@
+.container-form {
+  width: 600px;
+  margin: 20px auto;
+  background: rgb(189, 186, 186);
+}
+
+.contenedor {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container-form {
+  padding: 20px;
+}
+
+.title-product,
+.title-vista {
+  text-align: center;
+}
+
+.title-vista {
+  padding-top: 10px;
+  color: white;
+  font-size: 30px;
+  background: #212529;
+  height: 60px;
+}
+
+.img-producto {
+  width: 100px;
+  height: 100px;
+}
+
+.table-format {
+  text-align: center;
+}
+
+.no-prod {
+  width: 80%;
+  height: 50px;
+  margin: 15px auto;
+  font-size: 20px;
+}
+
+.author {
+  font-weight: 700;
+  color: blue;
+}
+.hora {
+  font-weight: 400;
+  color: brown;
+}
+.text {
+  font-style: italic;
+  font-weight: 400;
+  color: green;
+}

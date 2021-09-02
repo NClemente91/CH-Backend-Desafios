@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Desafio 14 - ES6 to JS5</title>
+  </head>
+  <body>
+    <div class="container-form">
+      <h1 class="title-product">Ingrese Producto</h1>
+      <form onsubmit="return enviarPost()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Nombre</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            id="title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Precio</label>
+          <input
+            type="number"
+            name="price"
+            class="form-control"
+            id="price"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="thumbnail" class="form-label">Foto URL</label>
+          <input
+            type="text"
+            name="thumbnail"
+            class="form-control"
+            id="thumbnail"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnForm">
+          ENVIAR
+        </button>
+      </form>
+      <div class="contenedor mt-5">
+        <h1 class="title-vista">Vista de Productos</h1>
+        <script type="text/html" id="templateProductos">
+          <% if(productExist) { %>
+          <table class="table table-dark table-striped table-format">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Foto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% productos.forEach(producto => { %>
+              <tr>
+                <td><%= producto.title %></td>
+                <td><%= producto.price %></td>
+                <td>
+                  <img
+                    src="<%= producto.thumbnail %>"
+                    alt="Imagen del producto"
+                    class="img-producto"
+                  />
+                </td>
+              </tr>
+              <%})%>
+            </tbody>
+          </table>
+          <% } else { %>
+          <p class="no-prod">No se encontraron productos</p>
+          <% } %>
+        </script>
+        <div id="templateToRender"></div>
+        <div>
+          <h2 class="title-product mt-3">Central de Mensajes</h2>
+          <div>
+            <div class="mb-3">
+              <input
+                type="email"
+                name="username"
+                class="form-control"
+                id="username"
+                placeholder="Tu Nombre"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                name="texto"
+                class="form-control"
+                id="texto"
+                placeholder="Cuéntanos algo..."
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnForm"
+              onclick="addMessage()"
+            >
+              ENVIAR
+            </button>
+          </div>
+        </div>
+        <div class="mt-2" id="messages"></div>
+      </div>
+    </div>
+    <script src="./ejs.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
