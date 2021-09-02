@@ -55,7 +55,6 @@ class Server {
       socket.emit("messages", messages);
 
       socket.on("new-message", (data) => {
-        console.log("Llega a esta parte");
         messages.push(data);
         this.io.sockets.emit("messages", messages);
       });

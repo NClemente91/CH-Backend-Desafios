@@ -1,5 +1,5 @@
 .container-form {
-  width: 400px;
+  width: 600px;
   margin: 20px auto;
   background: rgb(189, 186, 186);
 }
@@ -40,4 +40,18 @@
   height: 50px;
   margin: 15px auto;
   font-size: 20px;
+}
+
+.author {
+  font-weight: 700;
+  color: blue;
+}
+.hora {
+  font-weight: 400;
+  color: brown;
+}
+.text {
+  font-style: italic;
+  font-weight: 400;
+  color: green;
 }
