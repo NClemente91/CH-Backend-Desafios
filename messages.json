@@ -1,0 +1,17 @@
+[
+  {
+    "author": "a@example.com",
+    "hora": "[04/08/2021 09:03:35]",
+    "text": "¡Hola! ¿Que tal?"
+  },
+  {
+    "author": "b@example.com",
+    "hora": "[04/08/2021 09:15:48]",
+    "text": "¡Muy bien! ¿Y vos?"
+  },
+  {
+    "author": "a@example.com",
+    "hora": "[04/08/2021 09:17:07]",
+    "text": "¡Genial!"
+  }
+]
