@@ -1,11 +1,45 @@
-const fs = require("fs");
+const persFS = require("../persistence/fileSystem/fileSystem");
+const persFirebase = require("../persistence/firebase/firebase");
+const persMemoria = require("../persistence/memoria/memoria");
+const persMongoDBDBaaS = require("../persistence/mongoDBDBaaS/mongoDBDBaaS");
+const persMongoDBLocal = require("../persistence/mongoDBLocal/mongoDBLocal");
+const persMySQLDBaaS = require("../persistence/mySQLLocal/mySQLLocal");
+const persMySQLLocal = require("../persistence/mySQLLocal/mySQLLocal");
+const persSQLite3 = require("../persistence/sqLite3/sqLite3");
 
-//TRAEMOS LOS PRODUCTOS GUARDADOS EN JSON
-const jsonProducts = fs.readFileSync("products.json", "utf-8");
-const products = JSON.parse(jsonProducts);
+let pers;
+
+(function Factory(P) {
+  switch (P) {
+    case "0":
+      pers = new persMemoria();
+      break;
+    case "1":
+      pers = new persFS();
+      break;
+    case "2":
+      pers = new persMySQLLocal();
+      break;
+    case "3":
+      pers = new persMySQLDBaaS();
+      break;
+    case "4":
+      pers = new persSQLite3();
+      break;
+    case "5":
+      pers = new persMongoDBLocal();
+      break;
+    case "6":
+      pers = new persMongoDBDBaaS();
+      break;
+    case "7":
+      pers = new persFirebase();
+      break;
+  }
+})(process.env.PERSISTENCIA);
 
 //PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES O UNO POR SI ID
-const getProducts = (req, res) => {
+const getProducts = async (req, res) => {
   try {
     const idp = req.params.id;
 
@@ -15,24 +49,25 @@ const getProducts = (req, res) => {
         code: "OK",
         message: null,
         success: true,
-        data: products,
+        data: await pers.getAllProducts(),
       });
     }
 
-    let productIndex = products.findIndex((p) => p.id === Number(idp));
-    if (productIndex !== -1) {
+    //SI SE PASA ID COMO PARÁMETRO
+    let product = await pers.getOneProduct(idp);
+    if (product !== null) {
       return res.status(200).json({
         code: "OK",
         message: null,
         success: true,
-        data: products[productIndex],
+        data: product,
       });
     } else {
       return res.status(404).json({
         code: "NOT FOUND",
         message: "Producto no encontrado",
         success: false,
-        data: null,
+        data: product,
       });
     }
   } catch (error) {
@@ -46,23 +81,10 @@ const getProducts = (req, res) => {
 };
 
 //PARA INCORPORAR PRODUCTOS AL LISTADO
-const postProducts = (req, res) => {
+const postProducts = async (req, res) => {
   try {
-    const { nombre, descripcion, foto, precio, stock } = req.body;
-    if (nombre && descripcion && foto && precio && stock) {
-      const newProduct = {
-        id: products[products.length - 1].id + 1 || 1,
-        timestamp: Date.now(),
-        nombre,
-        descripcion,
-        codigo: Math.floor(Math.random() * (999 - 1)) + 1,
-        foto,
-        precio,
-        stock,
-      };
-      products.push(newProduct);
-      const newJsonProducts = JSON.stringify(products);
-      fs.writeFileSync("products.json", newJsonProducts, "utf-8");
+    const newProduct = await pers.postOneProduct(req.body);
+    if (newProduct !== null) {
       return res.status(200).json({
         code: "OK",
         message: null,
@@ -74,7 +96,7 @@ const postProducts = (req, res) => {
         code: "Error",
         message: "Dato faltante",
         success: false,
-        data: null,
+        data: newProduct,
       });
     }
   } catch (error) {
@@ -89,29 +111,23 @@ const postProducts = (req, res) => {
 
 //PARA ACTUALIZAR UN PRODUCTO POR SI ID
 //Suponemos que solo podemos modificar la foto, el precio y el stcok
-const putProducts = (req, res) => {
+const putProducts = async (req, res) => {
   try {
     const idp = req.params.id;
-    const { foto, precio, stock } = req.body;
-    const updateProductindex = products.findIndex((p) => p.id === Number(idp));
-    if (updateProductindex !== -1 && foto && precio && stock) {
-      products[updateProductindex].foto = foto;
-      products[updateProductindex].precio = precio;
-      products[updateProductindex].stock = stock;
-      const newJsonProducts = JSON.stringify(products);
-      fs.writeFileSync("products.json", newJsonProducts, "utf-8");
+    const productUpdate = await pers.putOneProduct(idp, req.body);
+    if (productUpdate !== null) {
       return res.status(200).json({
         code: "OK",
         message: null,
         success: true,
-        data: products[updateProductindex],
+        data: productUpdate,
       });
     } else {
       return res.status(404).json({
         code: "NOT FOUND",
         message: "Producto no encontrado o dato faltante",
         success: false,
-        data: null,
+        data: productUpdate,
       });
     }
   } catch (error) {
@@ -125,26 +141,22 @@ const putProducts = (req, res) => {
 };
 
 //PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
-const deleteProducts = (req, res) => {
+const deleteProducts = async (req, res) => {
   try {
-    const idp = req.params.id;
-    const updateProductindex = products.findIndex((p) => p.id === Number(idp));
-    if (updateProductindex !== -1) {
-      products.splice(updateProductindex, 1);
-      const newJsonProducts = JSON.stringify(products);
-      fs.writeFileSync("products.json", newJsonProducts, "utf-8");
+    const productDelete = await pers.deleteOneProduct(req.params.id);
+    if (productDelete !== null) {
       return res.status(200).json({
         code: "OK",
-        message: null,
+        message: "Producto borrado",
         success: true,
-        data: null,
+        data: productDelete,
       });
     } else {
       return res.status(404).json({
         code: "NOT FOUND",
         message: "Producto no encontrado",
         success: false,
-        data: null,
+        data: productDelete,
       });
     }
   } catch (error) {

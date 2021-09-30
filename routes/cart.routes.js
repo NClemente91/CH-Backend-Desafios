@@ -10,9 +10,7 @@ const {
 
 //RUTAS
 router.get("/listar/:id?", getProductsCart);
-
 router.post("/agregar/:id_producto", postProductsCart);
-
 router.delete("/borrar/:id_producto", deleteProductsCart);
 
 module.exports = router;

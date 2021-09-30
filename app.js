@@ -12,7 +12,6 @@ class Server {
   }
 
   middlewares() {
-    // this.app.use(express.static(__dirname + "/public"));
     this.app.use(express.json());
   }
 

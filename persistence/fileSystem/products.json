@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1631052028860,
+    "nombre": "Manzana",
+    "descripcion": "Manzana por Kg",
+    "codigo": 968,
+    "foto": "https://cdn0.iconfinder.com/data/icons/graphorama-fruits-7/128/apple-128.png",
+    "precio": 85,
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "timestamp": 1631052067278,
+    "nombre": "Pera",
+    "descripcion": "Pera por Kg",
+    "codigo": 408,
+    "foto": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_pera-512.png",
+    "precio": 55,
+    "stock": 50
+  }
+]

@@ -14,11 +14,8 @@ const {
 
 //RUTAS
 router.get("/listar/:id?", getProducts);
-
 router.post("/agregar", validateRol, postProducts);
-
 router.put("/actualizar/:id", validateRol, putProducts);
-
 router.delete("/borrar/:id", validateRol, deleteProducts);
 
 module.exports = router;
