@@ -1,9 +1,9 @@
+const { optionsMDB } = require("./options/mariaDB");
 const knex = require("knex");
-const { optionsProyFinal } = require("./options/SQLite3");
 
-class SQLite3 {
+class MySQLDBaaS {
   constructor() {
-    this.knex = knex(optionsProyFinal);
+    this.knex = knex(optionsMDB);
 
     this.knex.schema
       .hasTable("products")
@@ -282,4 +282,4 @@ class SQLite3 {
   }
 }
 
-module.exports = SQLite3;
+module.exports = MySQLDBaaS;
