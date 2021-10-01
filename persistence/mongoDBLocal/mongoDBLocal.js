@@ -11,35 +11,35 @@ class MongoDBLocal {
 
   //--------------PRODUCTOS---------------//
   //METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-  getAllProducts() {
+  async getAllProducts() {
     try {
-      const products = this.Product.find();
+      const products = await this.Product.find();
       if (!products) {
         return null;
       } else {
         return products;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-  getOneProduct(idp) {
+  async getOneProduct(idp) {
     try {
-      const product = this.Product.findById(idp);
+      const product = await this.Product.findById(idp);
       if (!product) {
         return null;
       } else {
         return product;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA INCORPORAR UN PRODUCTO AL LISTADO
-  postOneProduct(prod) {
+  async postOneProduct(prod) {
     try {
       const { nombre, descripcion, foto, precio, stock } = prod;
       if (nombre && descripcion && foto && precio && stock) {
@@ -52,20 +52,20 @@ class MongoDBLocal {
           precio,
           stock,
         };
-        const addProduct = this.Product.create(newProduct);
+        const addProduct = await this.Product.create(newProduct);
         return addProduct;
       } else {
         return null;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA ACTUALIZAR UN PRODUCTO POR SI ID
-  putOneProduct(idp, prod) {
+  async putOneProduct(idp, prod) {
     try {
-      const product = this.Product.findOneAndUpdate(
+      const product = await this.Product.findOneAndUpdate(
         { _id: idp },
         { ...prod },
         { new: true }
@@ -75,83 +75,115 @@ class MongoDBLocal {
       }
       return product;
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
-  deleteOneProduct(idp) {
+  async deleteOneProduct(idp) {
     try {
-      const productDelete = this.Product.deleteOne({
-        _id: req.params.id,
-      });
-      if (productDelete.n === 0) {
-        return null;
-      } else {
+      const productDelete = await this.Product.deleteOne({ _id: idp });
+      console.log(productDelete);
+      if (productDelete.deletedCount === 1) {
         return this.Product.find();
+      } else {
+        return null;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //--------------CARRITO---------------//
-  //METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
-  getAllProductsCart() {
+  //METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO (OK)
+  async getAllProductsCart() {
     try {
-      const cart = this.Cart.producto.find();
-      if (!products) {
+      const cart = await this.Cart.find();
+      if (!cart) {
         return null;
       } else {
-        return cart;
+        return cart[0].producto;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA LISTAR UN PRODUCTO GUARDADO EN EL CARRITO POR SU ID
-  getOneProductCart(idc) {
+  async getOneProductCart(idp) {
     try {
-      const cart = this.Cart.producto.findById(idp);
-      if (!product) {
-        return null;
+      const cart = await this.Cart.find();
+      if (cart[0].producto.length !== 0) {
+        const prodCart = cart[0].producto.find((p) => p._id == idp);
+        if (prodCart) {
+          return prodCart;
+        } else {
+          return null;
+        }
       } else {
-        return cart;
+        return null;
       }
     } catch (error) {
-      return error;
+      return null;
     }
   }
 
   //METODO PARA INCORPORAR UN PRODUCTO AL CARRITO POR SU ID
   async postOneProductCart(idp) {
-    const addProduct = await this.Product.findById(idp);
-    const cart = await this.Cart.find().producto;
-    if (addProduct && cart.length === 0) {
-      const addProductCart = this.Cart.create(newCart);
-      return addProductCart;
-    } else if (addProduct && cart.length !== 0) {
-      const addProductCart = this.Cart.producto.create(addProduct);
-      return addProductCart;
-    } else {
+    try {
+      const addProduct = await this.Product.findById(idp);
+      const cart = await this.Cart.find();
+      const cartId = cart[0]._id;
+      if (addProduct && cart.length === 0) {
+        const newCart = {
+          timestamp: Date.now(),
+          producto: [addProduct],
+        };
+        const addProductCart = this.Cart.create(newCart);
+        return addProductCart;
+      } else if (addProduct && cart.length !== 0) {
+        const cartProduct = cart[0].producto;
+        cartProduct.push(addProduct);
+        const updateProduct = await this.Cart.findOneAndUpdate(
+          { _id: cartId },
+          { producto: cartProduct },
+          { new: true }
+        );
+        return updateProduct;
+      } else {
+        return null;
+      }
+    } catch (error) {
       return null;
     }
   }
 
   //METODO PARA BORRAR UN PRODUCTO DEL CARRITO POR SI ID
-  deleteOneProductCart(idp) {
-    // const deleteProductIndex = this.cart[0].producto.findIndex(
-    //   (p) => p.id === Number(idp)
-    // );
-    // if (deleteProductIndex !== -1) {
-    //   this.cart[0].producto.splice(deleteProductIndex, 1);
-    //   const newJsonCart = JSON.stringify(this.cart);
-    //   fs.writeFileSync(path.join(__dirname, "cart.json"), newJsonCart, "utf-8");
-    //   return this.cart;
-    // } else {
-    //   return null;
-    // }
+  async deleteOneProductCart(idp) {
+    try {
+      const deleteProduct = await this.Product.findById(idp);
+      const cart = await this.Cart.find();
+      const cartId = cart[0]._id;
+      if ((deleteProduct && cart.length === 0) || !deleteProduct) {
+        return null;
+      } else {
+        const cartProduct = cart[0].producto;
+        const cartProductDelete = cartProduct.findIndex((p) => p._id == idp);
+        if (cartProductDelete !== -1) {
+          cartProduct.splice(cartProductDelete, 1);
+          const updateProduct = await this.Cart.findOneAndUpdate(
+            { _id: cartId },
+            { producto: cartProduct },
+            { new: true }
+          );
+          return updateProduct;
+        } else {
+          return null;
+        }
+      }
+    } catch (error) {
+      return null;
+    }
   }
 }
 

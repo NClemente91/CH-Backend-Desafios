@@ -1,14 +1,12 @@
 const { Schema, model } = require("mongoose");
 
-const MensajeSchema = Schema(
-  {
-    producto: {
-      type: Array,
-    },
+const CartSchema = Schema({
+  timestamp: {
+    type: Number,
   },
-  {
-    timestamps: true,
-  }
-);
+  producto: {
+    type: Array,
+  },
+});
 
-module.exports = model("Mensajes", MensajeSchema);
+module.exports = model("Cart", CartSchema);
