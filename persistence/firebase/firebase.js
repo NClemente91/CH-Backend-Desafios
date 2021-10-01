@@ -1,145 +1,150 @@
+const admin = require("firebase-admin");
+const serviceAccount = require("./backendch-firebase-adminsdk-huamq-e8206454cc.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
 class Firebase {
-  constructor() {}
+  constructor() {
+    this.db = admin.firestore();
+    this.products = this.db.collection("products");
+    this.cart = this.db.collection("cart");
+  }
 
   //--------------PRODUCTOS---------------//
   //METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-  getAllProducts() {
-    // return this.products;
+  async getAllProducts() {
+    try {
+      const productsColl = await this.products.get();
+      return productsColl.docs;
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-  getOneProduct(idp) {
-    // let productIndex = this.products.findIndex((p) => p.id === Number(idp));
-    // if (productIndex !== -1) {
-    //   return this.products[productIndex];
-    // } else {
-    //   return null;
-    // }
+  async getOneProduct(idp) {
+    try {
+      const doc = this.products.doc(`${idp}`);
+      const item = await doc.get();
+      return item.data();
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA INCORPORAR UN PRODUCTO AL LISTADO
-  postOneProduct(prod) {
-    // const { nombre, descripcion, foto, precio, stock } = prod;
-    // if (nombre && descripcion && foto && precio && stock) {
-    //   const newProduct = {
-    //     id: this.products[this.products.length - 1].id + 1 || 1,
-    //     timestamp: Date.now(),
-    //     nombre,
-    //     descripcion,
-    //     codigo: Math.floor(Math.random() * (999 - 1)) + 1,
-    //     foto,
-    //     precio,
-    //     stock,
-    //   };
-    //   this.products.push(newProduct);
-    //   const newJsonProducts = JSON.stringify(this.products);
-    //   fs.writeFileSync(
-    //     path.join(__dirname, "products.json"),
-    //     newJsonProducts,
-    //     "utf-8"
-    //   );
-    //   return newProduct;
-    // } else {
-    //   return null;
-    // }
+  async postOneProduct(prod) {
+    try {
+      const { nombre, descripcion, foto, precio, stock } = prod;
+      if (nombre && descripcion && foto && precio && stock) {
+        const newProduct = {
+          timestamp: Date.now(),
+          nombre,
+          descripcion,
+          codigo: Math.floor(Math.random() * (999 - 1)) + 1,
+          foto,
+          precio,
+          stock,
+        };
+        let productAdd = this.products.doc();
+        await productAdd.create(newProduct);
+        return newProduct;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA ACTUALIZAR UN PRODUCTO POR SI ID
-  putOneProduct(idp, prod) {
-    // const { foto, precio, stock } = prod;
-    // let updateProductindex = this.products.findIndex(
-    //   (p) => p.id === Number(idp)
-    // );
-    // if (updateProductindex !== -1 && foto && precio && stock) {
-    //   this.products[updateProductindex].foto = foto;
-    //   this.products[updateProductindex].precio = precio;
-    //   this.products[updateProductindex].stock = stock;
-    //   const newJsonProducts = JSON.stringify(this.products);
-    //   fs.writeFileSync(
-    //     path.join(__dirname, "products.json"),
-    //     newJsonProducts,
-    //     "utf-8"
-    //   );
-    //   return this.products[updateProductindex];
-    // } else {
-    //   return null;
-    // }
+  async putOneProduct(idp, prod) {
+    try {
+      const doc = this.products.doc(`${idp}`);
+      const item = await doc.update(prod);
+      return item;
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
-  deleteOneProduct(idp) {
-    // const updateProductindex = this.products.findIndex(
-    //   (p) => p.id === Number(idp)
-    // );
-    // if (updateProductindex !== -1) {
-    //   this.products.splice(updateProductindex, 1);
-    //   const newJsonProducts = JSON.stringify(this.products);
-    //   fs.writeFileSync(
-    //     path.join(__dirname, "products.json"),
-    //     newJsonProducts,
-    //     "utf-8"
-    //   );
-    //   return this.products;
-    // } else {
-    //   return null;
-    // }
+  async deleteOneProduct(idp) {
+    try {
+      const doc = this.products.doc(`${idp}`);
+      const item = await doc.delete();
+      return item;
+    } catch (error) {
+      return null;
+    }
   }
 
   //--------------CARRITO---------------//
   //METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
-  getAllProductsCart() {
-    // return this.cart[0].producto;
+  async getAllProductsCart() {
+    try {
+      const productsColl = await this.cart.get();
+      return productsColl.docs.producto;
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA LISTAR UN PRODUCTO GUARDADO EN EL CARRITO POR SU ID
-  getOneProductCart(idc) {
-    // let productIndex = this.cart[0].producto.findIndex(
-    //   (p) => p.id === Number(idc)
-    // );
-    // if (productIndex !== -1) {
-    //   return this.cart[0].producto[productIndex];
-    // } else {
-    //   return null;
-    // }
+  async getOneProductCart(idc) {
+    try {
+      const cart = this.getAllProductsCart();
+      const prod = cart.producto.find((p) => {
+        p.id == idc;
+      });
+      if (prod) {
+        return prod;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA INCORPORAR UN PRODUCTO AL CARRITO POR SU ID
-  postOneProductCart(idp) {
-    // const addProductIndex = this.products.findIndex(
-    //   (p) => p.id === Number(idp)
-    // );
-    // if (addProductIndex !== -1 && this.cart.length === 0) {
-    //   const newCart = {
-    //     id: 1,
-    //     timestamp: Date.now(),
-    //     producto: [this.products[addProductIndex]],
-    //   };
-    //   const newJsonCart = JSON.stringify(newCart);
-    //   fs.writeFileSync(path.join(__dirname, "cart.json"), newJsonCart, "utf-8");
-    //   return newCart;
-    // } else if (addProductIndex !== -1 && this.cart.length !== 0) {
-    //   this.cart[0].producto.push(this.products[addProductIndex]);
-    //   const newJsonCart = JSON.stringify(this.cart);
-    //   fs.writeFileSync(path.join(__dirname, "cart.json"), newJsonCart, "utf-8");
-    //   return this.cart;
-    // } else {
-    //   return null;
-    // }
+  async postOneProductCart(idp) {
+    try {
+      const cart = this.getAllProductsCart();
+      if (cart) {
+        const prod = this.getOneProduct(idp);
+        cart.producto.push(prod);
+        const doc = this.cart.doc();
+        const item = await doc.update(cart.producto);
+        return item;
+      } else {
+        const newCart = {
+          timestamp: Date.now(),
+          producto: this.getOneProduct(idp),
+        };
+        const doc = this.cart.doc();
+        const item = await doc.create(newCart);
+        return item;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 
   //METODO PARA BORRAR UN PRODUCTO DEL CARRITO POR SI ID
-  deleteOneProductCart(idp) {
-    // const deleteProductIndex = this.cart[0].producto.findIndex(
-    //   (p) => p.id === Number(idp)
-    // );
-    // if (deleteProductIndex !== -1) {
-    //   this.cart[0].producto.splice(deleteProductIndex, 1);
-    //   const newJsonCart = JSON.stringify(this.cart);
-    //   fs.writeFileSync(path.join(__dirname, "cart.json"), newJsonCart, "utf-8");
-    //   return this.cart;
-    // } else {
-    //   return null;
-    // }
+  async deleteOneProductCart(idp) {
+    try {
+      const cart = this.getAllProductsCart();
+      const prod = cart.producto.splice(idp, 1);
+      if (prod !== -1) {
+        return cart;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 }
 
