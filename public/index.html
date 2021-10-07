@@ -80,7 +80,7 @@
         </script>
         <div id="templateToRender"></div>
         <div>
-          <h2 class="title-product mt-3">Central de Mensajes</h2>
+          <h2 class="title-product mt-3" id="compress"></h2>
           <div>
             <div class="mb-3">
               <input
@@ -166,8 +166,11 @@
       </div>
     </div>
     <script src="./ejs.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"
+      charset="utf-8"
+    ></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.min.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>

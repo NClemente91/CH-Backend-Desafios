@@ -1,3 +1,4 @@
+const norma = normalizr;
 const socket = io();
 const templateProductos = document.querySelector("#templateProductos");
 const templateToRender = document.querySelector("#templateToRender");
@@ -51,11 +52,29 @@ function enviarPost(e) {
 
 //SECCION DE MENSAJES
 socket.on("messages", (data) => {
-  console.log(data);
-  render(data);
+  const dataDesnormalizada = desnormalizar(data.value);
+  render(dataDesnormalizada, data.compress);
 });
 
-function render(data) {
+function desnormalizar(messages) {
+  const authorSchema = new norma.schema.Entity("authors");
+  const messageSchema = new norma.schema.Entity("messages", {
+    author: authorSchema,
+  });
+  const messagesSchema = new norma.schema.Array(messageSchema);
+
+  const denormalizedData = norma.denormalize(
+    messages.result,
+    messagesSchema,
+    messages.entities
+  );
+
+  return denormalizedData;
+}
+
+function render(data, compress) {
+  document.getElementById("compress").innerHTML = `
+  Central de Mensajes "Compresión ${compress}%"`;
   let html = data
     .map((elem) => {
       return `
