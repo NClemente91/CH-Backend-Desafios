@@ -12,7 +12,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const bCrypt = require("bcrypt");
 const passport = require("passport");
-const passportLocal = require("passport-local");
+const LocalStrategy = require("passport-local");
 
 class Server {
   constructor() {
@@ -25,17 +25,14 @@ class Server {
     //NORMALIZR
     this.normalize = normalizr.normalize;
     this.schema = normalizr.schema;
-    //PASSPORT
-    this.passport = passport;
-    this.LocalStrategy = passportLocal.Strategy;
     //PUERTO
     this.port = 5050;
 
     this.session();
 
-    this.passportS();
-
     this.middlewares();
+
+    this.passportP();
 
     this.ejs();
 
@@ -44,9 +41,95 @@ class Server {
     this.routes();
   }
 
+  passportP() {
+    passport.use(
+      "login",
+      new LocalStrategy(
+        {
+          passReqToCallback: true,
+        },
+        (req, username, password, done) => {
+          User.findOne({ username: username }, (err, user) => {
+            if (err) {
+              return done(err);
+            }
+            if (!user) {
+              console.log("User Not Found with username " + username);
+              console.log("message", "User Not found.");
+              return done(null, false);
+            }
+            if (!isValidPassword(user, password)) {
+              console.log("Invalid Password");
+              console.log("message", "Invalid Password");
+              return done(null, false);
+            }
+            return done(null, user);
+          });
+        }
+      )
+    );
+
+    const isValidPassword = (user, password) => {
+      return bCrypt.compareSync(password, user.password);
+    };
+
+    passport.use(
+      "register",
+      new LocalStrategy(
+        {
+          passReqToCallback: true,
+        },
+        (req, username, password, done) => {
+          const findOrCreateUser = () => {
+            User.findOne({ username: username }, (err, user) => {
+              if (err) {
+                console.log("Error in SignUp: " + err);
+                return done(err);
+              }
+              if (user) {
+                console.log("User already exists");
+                console.log("message", "User Already Exists");
+                return done(null, false);
+              } else {
+                const newUser = new User();
+                newUser.username = username;
+                newUser.password = createHash(password);
+                newUser.save((err) => {
+                  if (err) {
+                    console.log("Error in Saving user: " + err);
+                    throw err;
+                  }
+                  console.log("User Registration succesful");
+                  return done(null, newUser);
+                });
+              }
+            });
+          };
+          process.nextTick(findOrCreateUser);
+        }
+      )
+    );
+
+    const createHash = (password) => {
+      return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+    };
+
+    passport.serializeUser((user, done) => {
+      done(null, user._id);
+    });
+
+    passport.deserializeUser((id, done) => {
+      User.findById(id, (err, user) => {
+        done(err, user);
+      });
+    });
+  }
+
   middlewares() {
     this.app.use(cookieParser());
     this.app.use(express.static(__dirname + "/public"));
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
   }
 
   session() {
@@ -68,108 +151,82 @@ class Server {
     );
   }
 
-  passportS() {
-    this.passport.use(
-      "login",
-      new this.LocalStrategy({ passReqToCallback: true }, function (
-        req,
-        username,
-        password,
-        done
-      ) {
-        // check in mongo if a user with username exists or not
-        User.findOne({ username: username }, (err, user) => {
-          // In case of any error, return using the done method
-          if (err) return done(err);
-          // Username does not exist, log error & redirect back
-          if (!user) {
-            console.log("User Not Found with username " + username);
-            console.log("message", "User Not found.");
-            return done(null, false);
-          }
-          // User exists but wrong password, log the error
-          if (!isValidPassword(user, password)) {
-            console.log("Invalid Password");
-            console.log("message", "Invalid Password");
-            return done(null, false);
-          }
-          // User and password both match, return user from
-          // done method which will be treated like success
-          return done(null, user);
-        });
-      })
-    );
-
-    var isValidPassword = function (user, password) {
-      return bCrypt.compareSync(password, user.password);
-    };
-
-    this.passport.use(
-      "register",
-      new this.LocalStrategy({ passReqToCallback: true }, function (
-        req,
-        username,
-        password,
-        done
-      ) {
-        const findOrCreateUser = function () {
-          User.findOne({ username: username }, (err, user) => {
-            // In case of any error return
-            if (err) {
-              console.log("Error in SignUp: " + err);
-              return done(err);
-            }
-            // already exists
-            if (user) {
-              console.log("User already exists");
-              console.log("message", "User Already Exists");
-              return done(null, false);
-            } else {
-              // if there is no user with that email
-              // create the user
-              var newUser = new User();
-              // set the user's local credentials
-              newUser.username = username;
-              newUser.password = createHash(password);
-
-              // save the user
-              newUser.save(function (err) {
-                if (err) {
-                  console.log("Error in Saving user: " + err);
-                  throw err;
-                }
-                console.log("User Registration succesful");
-                return done(null, newUser);
-              });
-            }
-          });
-        };
-        // Delay the execution of findOrCreateUser and execute
-        // the method in the next tick of the event loop
-        process.nextTick(findOrCreateUser);
-      })
-    );
-
-    const createHash = (password) => {
-      return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-    };
-
-    this.passport.serializeUser((user, done) => {
-      done(null, user._id);
-    });
-
-    this.passport.deserializeUser((id, done) => {
-      User.findById(id, (err, user) => {
-        done(err, user);
-      });
-    });
-  }
-
   routes() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use("/", require("./routes/log.routes"));
+
+    //Rutas Productos
     this.app.use("/api", require("./routes/productos.routes"));
+
+    //Login
+    this.app.get("/login", async (req, res) => {
+      if (req.isAuthenticated()) {
+        const nombre = req.user.username;
+        try {
+          const cant = req.query.cant;
+          if (cant === "0") {
+            let productExist = false;
+            res.render("pages/index", { productExist, nombre });
+          } else if (!cant) {
+            let productExist = true;
+            let productos = await Producto.find();
+            res.render("pages/index", { productos, productExist, nombre });
+          } else {
+            let productExist = true;
+            let productos = await Producto.find();
+            res.render("pages/index", { productos, productExist, nombre });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        res.sendFile(process.cwd() + "/public/login.html");
+      }
+    });
+
+    this.app.post(
+      "/login",
+      passport.authenticate("login", { failureRedirect: "/faillogin" }),
+      (req, res) => {
+        let { nombre } = req.body;
+        req.session.nombre = nombre;
+        res.redirect("/login");
+      }
+    );
+
+    this.app.get("/faillogin", (req, res) => {
+      res.render("pages/login-error");
+    });
+
+    //REGISTER
+    this.app.get("/register", (req, res) => {
+      res.sendFile(process.cwd() + "/public/register.html");
+    });
+
+    this.app.post(
+      "/register",
+      passport.authenticate("register", { failureRedirect: "/failregister" }),
+      (req, res) => {
+        res.redirect("/login");
+      }
+    );
+
+    this.app.get("/failregister", (req, res) => {
+      res.render("pages/register-error");
+    });
+
+    //Logout
+    this.app.get("/logout", (req, res) => {
+      let nombre = req.user.username;
+      if (nombre) {
+        req.session.destroy((err) => {
+          if (!err) res.render("pages/logout", { nombre });
+          else res.redirect("/");
+        });
+      } else {
+        res.redirect("/");
+      }
+    });
   }
 
   ejs() {
