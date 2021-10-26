@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head"); %>
+  </head>
+  <body>
+    <div>
+      <h1>Informacion del proceso</h1>
+      <h3>Puerto: <%= data.port %></h3>
+      <h3>Facebook ID: <%= data.facebookId %></h3>
+      <h3>Nombre de la plataforma: <%= data.SO %></h3>
+      <h3>Version de NodeJS: <%= data.NV %></h3>
+      <h3>Uso de memoria: <%= data.UM %></h3>
+      <h3>Path de ejecución: <%= data.PE %></h3>
+      <h3>Process ID: <%= data.Pid %></h3>
+      <h3>Carpeta Corriente: <%= data.CC %></h3>
+    </div>
+  </body>
+</html>

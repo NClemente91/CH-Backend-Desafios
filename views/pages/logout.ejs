@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head"); %>
+  </head>
+  <body>
+    <h1 class="alert alert-primary bg-secondary containerLogout">
+      Hasta luego <%= nombre %>
+    </h1>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      setTimeout(() => {
+        location.href = "/login";
+      }, 2000);
+    </script>
+  </body>
+</html>
