@@ -295,12 +295,25 @@ class Server {
   }
 }
 
+//DESAFIO 29
 // Entrada de prueba por consola
 //node app.js "3300" "267332308498460" "ee09b012c8fabf748774f19fc03" "CLUSTER"
 //tasklist /fi "imagename eq node.exe"    (en powershell)
 //forever start app.js 8081 "267332308498460" "ee09b012c8fabf748774f19fc03" "CLUSTER"
 //pm2 start app.js --name="Server1" --watch -- 8081
 //pm2 start app.js --name="Server2" --watch -i max -- 8081
+
+//DESAFIO 30
+//MODO FORK
+//pm2 start app.js --name="Server1" --watch -- "8081" "267332308498460" "ee09b012c8fabf748774f19fc03" "FORK"
+//MODO CLUSTER
+//pm2 start app.js --name="Server2" --watch -- "8082" "267332308498460" "ee09b012c8fabf748774f19fc03" "CLUSTER"
+// ------------------ NGINX ----------------------
+//http://nginx.org/en/docs/windows.html
+//start nginx
+//tasklist /fi "imagename eq nginx.exe"  (en powershell)
+//nginx -s reload
+//nginx -s quit
 
 // MASTER
 if (modoForkOrCluster === "CLUSTER" && cluster.isMaster) {
