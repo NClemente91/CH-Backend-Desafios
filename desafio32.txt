@@ -36,3 +36,7 @@ Se realiza dos veces, una con console.log y otra sin
 
 Autocannon - Se realiza dos veces, una con console.log y otra sin
     autocannon -d 20 -c 100 "http://localhost:3300/info"
+
+
+
+CONCLUSIÓN: Viendo las distintas pruebas se llega a la conclusión que cuando se hace el console log de las 100 peticiones se tarda mas tiempo, que coincide con lo que uno pensaría
