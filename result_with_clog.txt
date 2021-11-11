@@ -1,0 +1,136 @@
+Statistical profiling result from isolate-000001789C3A8240-1060-v8.log, (3641 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   3401   93.4%          C:\Windows\SYSTEM32\ntdll.dll
+    239    6.6%          C:\Program Files\nodejs\node.exe
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      1    0.0%  100.0%  LazyCompile: *scanLine D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:803:22
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+      1    0.0%  100.0%  JavaScript
+      0    0.0%    0.0%  C++
+     20    0.5%  2000.0%  GC
+   3640  100.0%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   3401   93.4%  C:\Windows\SYSTEM32\ntdll.dll
+
+    239    6.6%  C:\Program Files\nodejs\node.exe
+    152   63.6%    C:\Program Files\nodejs\node.exe
+     30   19.7%      LazyCompile: ~compileFunction node:vm:311:25
+     30  100.0%        LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1024:18
+     30  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1062:37
+     30  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1117:37
+     26   17.1%      LazyCompile: ~handleWriteReq node:internal/stream_base_commons:45:24
+     26  100.0%        LazyCompile: ~writeGeneric node:internal/stream_base_commons:147:22
+     26  100.0%          LazyCompile: ~Socket._writeGeneric node:net:743:42
+     26  100.0%            LazyCompile: ~Socket._write node:net:780:35
+     12    7.9%      LazyCompile: ~realpathSync node:fs:1746:22
+     12  100.0%        LazyCompile: ~toRealPath node:internal/modules/cjs/loader:388:20
+     12  100.0%          LazyCompile: ~tryFile node:internal/modules/cjs/loader:379:17
+      6   50.0%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:489:28
+      5   41.7%            LazyCompile: ~tryExtensions node:internal/modules/cjs/loader:395:23
+      1    8.3%            LazyCompile: ~tryPackage node:internal/modules/cjs/loader:333:20
+      9    5.9%      LazyCompile: ~openSync node:fs:497:18
+      9  100.0%        LazyCompile: ~readFileSync node:fs:399:22
+      9  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1117:37
+      7   77.8%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:976:33
+      2   22.2%            LazyCompile: *Module._load node:internal/modules/cjs/loader:752:24
+      8    5.3%      LazyCompile: ~statSync node:fs:1148:18
+      8  100.0%        LazyCompile: ~tryStat D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\view.js:174:17
+      8  100.0%          LazyCompile: ~resolve D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\view.js:146:42
+      8  100.0%            LazyCompile: ~lookup D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\view.js:104:40
+      6    3.9%      LazyCompile: ~stat node:internal/modules/cjs/loader:146:14
+      3   50.0%        LazyCompile: ~tryFile node:internal/modules/cjs/loader:379:17
+      2   66.7%          LazyCompile: ~tryExtensions node:internal/modules/cjs/loader:395:23
+      1   50.0%            LazyCompile: ~tryPackage node:internal/modules/cjs/loader:333:20
+      1   50.0%            LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:489:28
+      1   33.3%          LazyCompile: *Module._findPath node:internal/modules/cjs/loader:489:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:855:35
+      3   50.0%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:489:28
+      3  100.0%          LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:855:35
+      3  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:752:24
+      6    3.9%      LazyCompile: ~initialize D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\passport\lib\middleware\initialize.js:51:29
+      4   66.7%        LazyCompile: *next D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:176:16
+      4  100.0%          LazyCompile: ~error D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\serve-static\index.js:115:39
+      3   75.0%            LazyCompile: *emit node:events:314:44
+      1   25.0%            LazyCompile: ~emit node:events:314:44
+      2   33.3%        LazyCompile: ~handle D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\layer.js:86:49
+      2  100.0%          LazyCompile: ~trim_prefix D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:288:23
+      2  100.0%            LazyCompile: ~<anonymous> D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:275:64
+      5    3.3%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      4   80.0%        LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1   25.0%          Eval: ~<anonymous> node:tls:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1   25.0%          Eval: ~<anonymous> node:internal/modules/package_json_reader:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1   25.0%          Eval: ~<anonymous> node:crypto:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1   25.0%          Eval: ~<anonymous> node:_http_client:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1   20.0%        LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:246:25
+      1  100.0%          LazyCompile: ~loadNativeModule node:internal/modules/cjs/helpers:35:26
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:752:24
+      5    3.3%      C:\Program Files\nodejs\node.exe
+      2   40.0%        LazyCompile: ~readPackage node:internal/modules/cjs/loader:285:21
+      2  100.0%          LazyCompile: ~readPackageScope node:internal/modules/cjs/loader:316:26
+      2  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1117:37
+      1   20.0%        LazyCompile: ~stat node:internal/modules/cjs/loader:146:14
+      1  100.0%          LazyCompile: ~tryFile node:internal/modules/cjs/loader:379:17
+      1  100.0%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:489:28
+      1   20.0%        LazyCompile: ~MongoStore D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\connect-mongo\build\main\lib\MongoStore.js:75:16
+      1  100.0%          LazyCompile: ~create D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\connect-mongo\build\main\lib\MongoStore.js:135:18
+      1  100.0%            LazyCompile: ~session D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\app.js:109:10
+      1   20.0%        LazyCompile: *scanLine D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:803:22
+      1  100.0%          LazyCompile: *compile D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:569:21
+      1  100.0%            LazyCompile: ~compile D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:379:35
+      3    2.0%      LazyCompile: ~writevGeneric node:internal/stream_base_commons:122:23
+      3  100.0%        LazyCompile: ~Socket._writeGeneric node:net:743:42
+      3  100.0%          LazyCompile: ~Socket._writev node:net:775:36
+      3  100.0%            LazyCompile: ~doWrite node:internal/streams/writable:398:17
+      3    2.0%      LazyCompile: ~existsSync node:fs:260:20
+      3  100.0%        LazyCompile: ~getIncludePath D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:154:24
+      3  100.0%          LazyCompile: ~includeFile D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:307:21
+      3  100.0%            LazyCompile: ~include D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\ejs\lib\ejs.js:685:30
+      3    2.0%      LazyCompile: ~cookieParser D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\cookie-parser\index.js:44:32
+      3  100.0%        LazyCompile: *next D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:176:16
+      3  100.0%          LazyCompile: ~compression D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\compression\index.js:59:31
+      3  100.0%            LazyCompile: *next D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:176:16
+      2    1.3%      LazyCompile: ~setHeader node:_http_outgoing:572:57
+      2  100.0%        LazyCompile: ~header D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\response.js:754:29
+      1   50.0%          LazyCompile: ~send D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\response.js:107:25
+      1  100.0%            LazyCompile: ~done D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\response.js:1006:27
+      1   50.0%          LazyCompile: ~contentType D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\response.js:594:32
+      1  100.0%            LazyCompile: ~send D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\response.js:107:25
+      2    1.3%      LazyCompile: ~jsonParser D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\body-parser\lib\types\json.js:98:30
+      1   50.0%        LazyCompile: ~handle D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%          LazyCompile: ~trim_prefix D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:288:23
+      1  100.0%            LazyCompile: ~<anonymous> D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:275:64
+      1   50.0%        LazyCompile: *next D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\express\lib\router\index.js:176:16
+      1  100.0%          LazyCompile: ~strategy.pass D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\passport\lib\middleware\authenticate.js:336:31
+      1  100.0%            LazyCompile: ~SessionStrategy.authenticate D:\PROGRAMACION\CODERHOUSE\14730-backend\Desafio-32\node_modules\passport\lib\strategies\session.js:45:50
+      9    3.8%    LazyCompile: *compileFunction node:vm:311:25
+      6   66.7%      LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1024:18
+      6  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1062:37
+      6  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1117:37
+      6  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:976:33
+      3   33.3%      LazyCompile: *Module._compile node:internal/modules/cjs/loader:1062:37
+      3  100.0%        LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1117:37
+      3  100.0%          LazyCompile: ~Module.load node:internal/modules/cjs/loader:976:33
+      3  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:752:24
+

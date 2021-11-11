@@ -1,0 +1,38 @@
+Comandos utilizados
+
+1)
+Se realiza dos veces, una con console.log y otra sin
+    node --prof app.js "3300" "267332308498460" "ee09b012c8fabf748774f19fc03" "FORK"
+
+Artillery - Se realiza dos veces, una con console.log y otra sin
+    artillery quick -c 50 -n 20 "http://localhost:3300/info" > artillery_prof_fork_withoutClog.txt
+    artillery quick -c 50 -n 20 "http://localhost:3300/info" > artillery_prof_fork_withClog.txt
+
+Autocannon - Se realiza dos veces, una con console.log y otra sin
+    autocannon -d 20 -c 100 "http://localhost:3300/info"
+
+Para procesar los resultados
+    node.exe --prof-process isolate-000001EFE6665890-1148-v8.log > result_without_clog.txt
+    node.exe --prof-process isolate-000001789C3A8240-1060-v8.log > result_with_clog.txt
+
+
+2)
+Se realiza dos veces, una con console.log y otra sin
+    node --inspect app.js "3300" "267332308498460" "ee09b012c8fabf748774f19fc03" "FORK"
+
+Artillery - Se realiza dos veces, una con console.log y otra sin
+    artillery quick -c 50 -n 20 "http://localhost:3300/info" > artillery_inspect_fork_withoutClog.txt
+    artillery quick -c 50 -n 20 "http://localhost:3300/info" > artillery_inspect_fork_withClog.txt
+
+Autocannon - Se realiza dos veces, una con console.log y otra sin
+    autocannon -d 20 -c 100 "http://localhost:3300/info"
+
+Resultados
+    chrome://inspect
+
+3)
+Se realiza dos veces, una con console.log y otra sin
+    0x app.js "3300" "267332308498460" "ee09b012c8fabf748774f19fc03" "FORK"
+
+Autocannon - Se realiza dos veces, una con console.log y otra sin
+    autocannon -d 20 -c 100 "http://localhost:3300/info"
