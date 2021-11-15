@@ -155,6 +155,11 @@ class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
 
+    //Ruta RAIZ
+    this.app.get("/", (req, res) => {
+      res.redirect("/login");
+    });
+
     //Rutas Productos
     this.app.use("/api", require("./routes/productos.routes"));
 
