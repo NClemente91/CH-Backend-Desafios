@@ -127,7 +127,7 @@ class Server {
 
   middlewares() {
     this.app.use(cookieParser());
-    this.app.use(express.static(__dirname + "/public"));
+    // this.app.use(express.static(__dirname + "/public"));
     this.app.use(passport.initialize());
     this.app.use(passport.session());
   }
@@ -155,9 +155,14 @@ class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
 
-    //Ruta RAIZ
-    this.app.get("/", (req, res) => {
-      res.redirect("/login");
+    // Ruta RAIZ
+    this.app.get("/", async (req, res) => {
+      this.app.use(express.static(__dirname + "/public"));
+      console.log("entra");
+      const nombre = "Desafio 33";
+      let productExist = true;
+      let productos = await Producto.find();
+      res.render("pages/index", { productos, productExist, nombre });
     });
 
     //Rutas Productos
