@@ -1,6 +1,7 @@
 const express = require("express");
 const Io = require("socket.io");
 const Http = require("http");
+const cors = require("cors");
 const dbConnection = require("./configs/mongodb");
 path = require("path");
 const Mensaje = require("./models/mensajes");
@@ -126,6 +127,7 @@ class Server {
   }
 
   middlewares() {
+    this.app.use(cors());
     this.app.use(cookieParser());
     this.app.use(express.static(__dirname + "/public"));
     this.app.use(passport.initialize());
