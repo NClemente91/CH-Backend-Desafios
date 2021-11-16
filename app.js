@@ -27,7 +27,7 @@ class Server {
     this.normalize = normalizr.normalize;
     this.schema = normalizr.schema;
     //PUERTO
-    this.port = 5050;
+    this.port = process.env.PORT || 5000;
 
     this.session();
 
