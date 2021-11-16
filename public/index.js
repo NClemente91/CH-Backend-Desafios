@@ -34,7 +34,8 @@ function enviarPost(e) {
     body: JSON.stringify(jsonData),
   };
 
-  const url = "http://localhost:5000/api/productos/guardar/";
+  const url =
+    "https://desafio33-backend-clemente.herokuapp.com/api/productos/guardar/";
 
   fetch(url, options)
     .then((res) => console.log(res.status))
