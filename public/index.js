@@ -34,7 +34,7 @@ function enviarPost(e) {
     body: JSON.stringify(jsonData),
   };
 
-  const url = "http://localhost:5050/api/productos/guardar/";
+  const url = "http://localhost:5000/api/productos/guardar/";
 
   fetch(url, options)
     .then((res) => console.log(res.status))
