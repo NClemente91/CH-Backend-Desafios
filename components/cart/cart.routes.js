@@ -6,7 +6,7 @@ const {
   getProductsCart,
   postProductsCart,
   deleteProductsCart,
-} = require("../controllers/cart.controller");
+} = require("./cart.controller");
 
 //RUTAS
 router.get("/listar/:id?", getProductsCart);

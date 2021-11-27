@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //CONTROLLERS
-const { getError } = require("../controllers/error.controller");
+const { getError } = require("./error.controller");
 
 //RUTAS
 router.use(getError);

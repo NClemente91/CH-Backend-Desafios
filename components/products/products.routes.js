@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //MIDDLEWARE
-const { validateRol } = require("../middleware/validate-rol");
+const { validateRol } = require("../../middleware/validate-rol");
 
 //CONTROLLERS
 const {
@@ -10,7 +10,7 @@ const {
   postProducts,
   putProducts,
   deleteProducts,
-} = require("../controllers/products.controller");
+} = require("./products.controller");
 
 //RUTAS
 router.get("/listar/:id?", getProducts);

@@ -1,37 +1,24 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 
-class Server {
-  constructor() {
-    this.app = express();
-    this.port = process.env.PORT;
+const router = require("./network/routes");
+const dbConnection = require("./configs/mongodb");
 
-    this.middlewares();
+const app = express();
 
-    this.routes();
+dbConnection();
+app.use(cors());
+app.use(express.json());
+
+router(app);
+
+const port = process.env.PORT;
+
+app.listen(port, () => {
+  try {
+    console.log(`Servidor conectado en puerto ${port}`);
+  } catch (error) {
+    console.log("Error de conexión", error);
   }
-
-  middlewares() {
-    this.app.use(express.json());
-  }
-
-  routes() {
-    this.app.use("/productos", require("./routes/products.routes"));
-    this.app.use("/carrito", require("./routes/cart.routes"));
-    this.app.use("*", require("./routes/error.routes"));
-  }
-
-  start() {
-    this.app.listen(this.port, () => {
-      try {
-        console.log(`Servidor conectado en puerto ${this.port}`);
-      } catch (error) {
-        console.log("Error de conexión", error);
-      }
-    });
-  }
-}
-
-const server = new Server();
-
-server.start();
+});
