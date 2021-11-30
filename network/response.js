@@ -1,3 +1,5 @@
+const { loggerInfo, loggerWarn, loggerError } = require("../configs/loggers");
+
 const responseSuccess = (req, res, message, status, data) => {
   let statusCode = status;
 
@@ -14,7 +16,8 @@ const responseSuccess = (req, res, message, status, data) => {
 };
 
 const responseError = (req, res, message, status) => {
-  console.error("[response error] " + message);
+  loggerInfo.info(`Response error ${message}`);
+  loggerError.error(`Response error ${message}`);
 
   res.status(status || 500).json({
     code: "ERR",

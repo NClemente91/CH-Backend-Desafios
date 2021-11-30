@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
+const { loggerInfo, loggerWarn, loggerError } = require("./loggers");
+
 const dbConnection = async () => {
   try {
     //CAMBIAR EL LINK
-    await mongoose.connect(
-      "mongodb+srv://BackCH:BackCH@cluster0.sh7lt.mongodb.net/test"
-    );
-    console.log("BD Conectada");
+    await mongoose.connect(process.env.MONGO_URL);
+    loggerInfo.info("BD Conectada");
   } catch (error) {
-    console.log("Error");
+    loggerInfo.info(`Error de conección de BD ${error}`);
+    loggerError.error(`Error de conección de BD ${error}`);
   }
 };
 
