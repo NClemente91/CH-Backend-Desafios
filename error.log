@@ -1,0 +1,5 @@
+[2021-12-01T09:34:24.812] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  Not Found
+[2021-12-01T09:35:06.594] [ERROR] error - Error en nodemailer-gmail Error: self signed certificate in certificate chain
+[2021-12-01T11:07:45.095] [ERROR] error - Invalid Password
+[2021-12-01T11:08:11.390] [ERROR] error - Invalid Password
+[2021-12-01T11:09:43.662] [ERROR] error - Error en nodemailer-gmail Error: self signed certificate in certificate chain
