@@ -1,0 +1,42 @@
+<div class="contenedor">
+  <div class="alert alert-success container-login">
+    <h1>Bienvenido <%= nombre %></h1>
+    <button
+      class="btn btn-warning float-right mt-2"
+      onclick="location.href='/logout'"
+    >
+      Desloguear
+    </button>
+  </div>
+  <h1 class="title-vista">Vista de Productos</h1>
+  <div>
+    <% if(productExist) { %>
+    <table class="table table-dark table-striped table-format">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%productos.map(producto => { %>
+        <tr>
+          <td><%= producto.title %></td>
+          <td><%= producto.price %></td>
+          <td>
+            <img
+              src="<%= producto.thumbnail %>"
+              alt="Imagen del producto"
+              class="img-producto"
+            />
+          </td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <% } else { %>
+    <p class="no-prod">No se encontraron productos</p>
+    <% } %>
+  </div>
+</div>
