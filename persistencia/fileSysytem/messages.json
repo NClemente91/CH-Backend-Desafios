@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "_id": "1",
+    "author": {
+      "id": "a@example.com",
+      "nombre": "a",
+      "apellido": "A",
+      "edad": "25",
+      "alias": "aA25",
+      "avatar": "sfrdr"
+    },
+    "hora": "[02/10/2021 08:19:22]",
+    "text": "Todo bien?"
+  }
+]

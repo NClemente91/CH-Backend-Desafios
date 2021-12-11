@@ -111,7 +111,7 @@ class FileSystem {
     const { author, hora, text } = msj;
     if (author && hora && text) {
       const newMessage = {
-        id: this.messages[this.messages.length - 1].id + 1 || 1,
+        _id: this.messages[this.messages.length - 1]._id + 1 || 1,
         author,
         hora,
         text,

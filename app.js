@@ -87,6 +87,7 @@ class Server {
   }
 
   normalizaMessages(data) {
+    console.log();
     const newData = data.map((msg) => ({
       id: msg._id.toString(),
       author: msg.author,

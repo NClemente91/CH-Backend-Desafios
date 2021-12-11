@@ -11,15 +11,15 @@ class persFactory {
       switch (opcion) {
         case "MEM":
           pers = new persMemoria();
-          console.log(pers);
+          // console.log(pers);
           return pers;
         case "FILE":
           pers = new persFS();
-          console.log(pers);
+          // console.log(pers);
           return pers;
         case "MONGO":
           pers = new persMongoDBDBaaS();
-          console.log(pers);
+          // console.log(pers);
           return pers;
       }
     } else {

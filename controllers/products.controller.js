@@ -87,7 +87,6 @@ const postOneProduct = async (req, res) => {
     const prod = req.body;
     prod.price = Number(prod.price);
     const product = await createProduct(prod);
-    console.log(product);
     return res.status(200).redirect("http://localhost:5000/");
   } catch (error) {
     return res.status(500).json({
