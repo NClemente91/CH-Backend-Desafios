@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "0.wdkxgxfz",
+    "author": {
+      "id": "a@example.com",
+      "nombre": "a",
+      "apellido": "A",
+      "edad": "57",
+      "alias": "aA57",
+      "avatar": "https://cdn2.iconfinder.com/data/icons/avatars-60/5985/5-Manager-128.png"
+    },
+    "hora": "[12/13/2021, 9:54:31 AM]",
+    "text": "Hola a todos!!"
+  },
+  {
+    "_id": "0.dg4hbucq",
+    "author": {
+      "id": "b@example.com",
+      "nombre": "b",
+      "apellido": "B",
+      "edad": "45",
+      "alias": "bB45",
+      "avatar": "https://cdn2.iconfinder.com/data/icons/avatars-60/5985/13-Captain-128.png"
+    },
+    "hora": "[12/13/2021, 9:55:24 AM]",
+    "text": "Hola, como están?"
+  }
+]
