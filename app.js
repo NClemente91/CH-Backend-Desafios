@@ -1,53 +1,31 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-
+const bodyParser = require("body-parser");
+const config = require("./configs/config");
+const passport = require("passport");
+require("./middleware/authorization");
 const router = require("./network/routes");
 const dbConnection = require("./configs/mongodb");
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
-const passport = require("passport");
 const { loggerInfo, loggerError } = require("./configs/loggers");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
-const modoForkOrCluster = process.argv[2] || "FORK";
 
 const app = express();
-
-require("./configs/passport");
 
 app.use(cors());
 dbConnection();
 
-app.use(
-  session({
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URL,
-      autoReconnect: true,
-      ttl: 600,
-    }),
-    secret: "claveProyectoFinal2021",
-    resave: false,
-    saveUninitialized: true,
-    rolling: true,
-    cookie: {
-      maxAge: 3600,
-    },
-  })
-);
-
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
 //MASTER
-if (modoForkOrCluster === "CLUSTER" && cluster.isMaster) {
+if (config.FORKORCLUSTER === "CLUSTER" && cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
@@ -65,11 +43,9 @@ if (modoForkOrCluster === "CLUSTER" && cluster.isMaster) {
   //WORKERS
   router(app);
 
-  const port = process.env.PORT;
-
-  app.listen(port, () => {
+  app.listen(config.PORT, () => {
     try {
-      loggerInfo.info(`Servidor conectado en puerto ${port}`);
+      loggerInfo.info(`Servidor conectado en puerto ${config.PORT}`);
     } catch (error) {
       loggerInfo.info(`Error de conección ${error}`);
       loggerError.error(`Error de conección ${error}`);

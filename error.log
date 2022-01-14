@@ -5,3 +5,5 @@
 [2021-12-01T11:09:43.662] [ERROR] error - Error en nodemailer-gmail Error: self signed certificate in certificate chain
 [2021-12-02T11:39:54.235] [ERROR] error - Response error Ruta localhost:8080/ Metodo GET  Not Found
 [2021-12-02T11:39:54.592] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  Not Found
+[2022-01-13T11:15:35.802] [ERROR] error - Error de conección de BD MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+[2022-01-13T11:20:54.723] [ERROR] error - Response error Ruta localhost:8080/ Metodo POST  Not Found
