@@ -7,3 +7,55 @@
 [2021-12-02T11:39:54.592] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  Not Found
 [2022-01-13T11:15:35.802] [ERROR] error - Error de conección de BD MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
 [2022-01-13T11:20:54.723] [ERROR] error - Response error Ruta localhost:8080/ Metodo POST  Not Found
+[2022-01-17T11:23:35.016] [ERROR] error - Response error Ruta localhost:8080/users/userAdmin1 Metodo GET  Not Found
+[2022-01-17T11:25:00.452] [ERROR] error - Response error Ruta localhost:8080/login Metodo GET  Not Found
+[2022-01-17T12:29:11.015] [ERROR] error - Response error JsonWebTokenError: invalid signature
+[2022-01-17T12:29:51.129] [ERROR] error - Response error invalid signature
+[2022-01-17T12:41:40.733] [ERROR] error - Response error Unauthorized access
+[2022-01-17T12:46:27.478] [ERROR] error - Response error Incorrect Password.
+[2022-01-17T12:46:35.647] [ERROR] error - Response error Not User found.
+[2022-01-17T17:09:18.631] [ERROR] error - Response error Wrong username and/or password
+[2022-01-17T17:10:33.787] [ERROR] error - Response error Unauthorized access
+[2022-01-17T18:07:57.697] [ERROR] error - Response error Ruta localhost:8080/list/sfgdfgdsfger Metodo GET  Not Found
+[2022-01-17T18:08:20.179] [ERROR] error - Response error Unauthorized access
+[2022-01-17T18:08:40.180] [ERROR] error - Response error Unauthorized access
+[2022-01-17T18:09:07.784] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:09:38.534] [ERROR] error - Response error Ruta localhost:8080/productos/listar/1 Metodo GET  Not Found
+[2022-01-17T18:11:14.753] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:11:33.047] [ERROR] error - Response error Unauthorized access
+[2022-01-17T18:12:50.655] [ERROR] error - Response error Data not found
+[2022-01-17T18:13:54.274] [ERROR] error - Response error Data not found
+[2022-01-17T18:16:42.909] [ERROR] error - Response error Data not found
+[2022-01-17T18:17:19.457] [ERROR] error - Response error Data not found
+[2022-01-17T18:17:53.738] [ERROR] error - Response error Data not found
+[2022-01-17T18:19:07.177] [ERROR] error - Response error Data not found
+[2022-01-17T18:21:10.632] [ERROR] error - Response error Data not found
+[2022-01-17T18:22:03.701] [ERROR] error - Response error Data not found
+[2022-01-17T18:22:41.026] [ERROR] error - Response error Data not found
+[2022-01-17T18:24:06.269] [ERROR] error - Response error Data not found
+[2022-01-17T18:25:32.638] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:26:03.438] [ERROR] error - Response error Unauthorized access
+[2022-01-17T18:26:58.956] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:35:25.989] [ERROR] error - Response error Product not found
+[2022-01-17T18:36:41.490] [ERROR] error - Response error Product not found
+[2022-01-17T18:36:57.546] [ERROR] error - Response error Product not found
+[2022-01-17T18:38:26.710] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:38:37.922] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:39:11.347] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:39:47.719] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:40:43.839] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:40:58.801] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:41:31.053] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:43:08.556] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:44:08.958] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:45:05.769] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:45:53.661] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:47:40.904] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:48:08.727] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:48:40.644] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:48:59.275] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:52:48.179] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:53:35.745] [ERROR] error - Response error Product Not Found
+[2022-01-17T18:54:07.579] [ERROR] error - Response error Product Not Found
+[2022-01-18T09:03:13.356] [ERROR] error - Response error Products Not Found
+[2022-01-18T09:03:44.957] [ERROR] error - Response error Product or Data not found

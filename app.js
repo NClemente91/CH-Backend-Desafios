@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const config = require("./configs/config");
 const passport = require("passport");
-require("./middleware/authorization");
+require("./configs/passport");
 const router = require("./network/routes");
 const dbConnection = require("./configs/mongodb");
 const { loggerInfo, loggerError } = require("./configs/loggers");

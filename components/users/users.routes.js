@@ -1,45 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
+
+//MIDDLEWARES
+const {
+  authenticateSignUp,
+  authenticateSignIn,
+  authenticateToken,
+} = require("../../middleware/authorization");
 
 //CONTROLLERS
-const {
-  renderSignUpForm,
-  signUp,
-  renderSignInForm,
-  signIn,
-  logout,
-} = require("./users.controller");
+const { signUp, signIn, logout } = require("./users.controller");
 
 //ROUTES
-router.get("/signup", renderSignUpForm);
+router.post("/signup", authenticateSignUp, signUp);
 
-router.post(
-  "/signup",
-  passport.authenticate("signup", {
-    session: false,
-    failureRedirect: "/signup",
-  }),
-  signUp
-);
+router.post("/signin", authenticateSignIn, signIn);
 
-router.get("/signin", renderSignInForm);
+router.post("/logout", logout);
 
-router.post(
-  "/signin",
-  passport.authenticate("signin", { failureRedirect: "/signin" }),
-  signIn
-);
-
-router.get("/logout", logout);
-
-router.get(
-  "/me",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const user = req.user.user.email;
-    res.json(user);
-  }
-);
+//PRUEBA PARA VER AUTORIZACION
+router.get("/me", authenticateToken, (req, res) => {
+  const user = req.user.email;
+  res.json(user);
+});
 
 module.exports = router;

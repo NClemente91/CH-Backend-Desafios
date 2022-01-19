@@ -1,7 +1,7 @@
 const Product = require("./products.model");
 
 //METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-const getAllProducts = async () => {
+const findAllProducts = async () => {
   try {
     const products = await Product.find();
     if (!products) {
@@ -14,8 +14,8 @@ const getAllProducts = async () => {
   }
 };
 
-//METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
-const getOneProduct = async (idp) => {
+//METODO PARA LISTAR UN PRODUCTO POR SU ID
+const findOneProductbyID = async (idp) => {
   try {
     const product = await Product.findById(idp);
     if (!product) {
@@ -28,19 +28,37 @@ const getOneProduct = async (idp) => {
   }
 };
 
-//METODO PARA INCORPORAR UN PRODUCTO AL LISTADO
-const postOneProduct = async (prod) => {
+//METODO PARA LISTAR PRODUCTOS QUE COINCIDAN EN LA CATEGORÍA
+const findProductsbyCategory = async (cat) => {
   try {
-    const { nombre, descripcion, foto, precio, stock } = prod;
-    if (nombre && descripcion && foto && precio && stock) {
+    if (cat !== "frutas" && cat !== "verduras") {
+      return null;
+    } else {
+      const products = await Product.find();
+      if (!products) {
+        return null;
+      }
+      catProducts = products.filter((p) => p.category === cat);
+      return catProducts;
+    }
+  } catch (error) {
+    return null;
+  }
+};
+
+//METODO PARA INCORPORAR UN PRODUCTO AL LISTADO
+const createOneProduct = async (prod) => {
+  try {
+    const { productName, description, photo, price, stock, category } = prod;
+    if (productName && description && photo && price && stock && category) {
       const newProduct = {
-        nombre,
-        timestamp: Date.now(),
-        descripcion,
-        codigo: Math.floor(Math.random() * (999 - 1)) + 1,
-        foto,
-        precio,
+        productName,
+        description,
+        code: Math.floor(Math.random() * (999 - 1)) + 1,
+        photo,
+        price,
         stock,
+        category,
       };
       const addProduct = await Product.create(newProduct);
       return addProduct;
@@ -53,7 +71,7 @@ const postOneProduct = async (prod) => {
 };
 
 //METODO PARA ACTUALIZAR UN PRODUCTO POR SI ID
-const putOneProduct = async (idp, prod) => {
+const updateOneProductbyID = async (idp, prod) => {
   try {
     const product = await Product.findOneAndUpdate(
       { _id: idp },
@@ -70,7 +88,7 @@ const putOneProduct = async (idp, prod) => {
 };
 
 //METODO PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
-const deleteOneProduct = async (idp) => {
+const deleteOneProductbyID = async (idp) => {
   try {
     const productDelete = await Product.deleteOne({ _id: idp });
     if (productDelete.deletedCount === 1) {
@@ -84,9 +102,10 @@ const deleteOneProduct = async (idp) => {
 };
 
 module.exports = {
-  getAllProducts,
-  getOneProduct,
-  postOneProduct,
-  putOneProduct,
-  deleteOneProduct,
+  findAllProducts,
+  findOneProductbyID,
+  findProductsbyCategory,
+  createOneProduct,
+  updateOneProductbyID,
+  deleteOneProductbyID,
 };

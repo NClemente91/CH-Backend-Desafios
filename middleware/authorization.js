@@ -1,89 +1,50 @@
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const JWTstrategy = require("passport-jwt").Strategy;
-const ExtractJWT = require("passport-jwt").ExtractJwt;
 
-const config = require("../configs/config");
+const { responseError } = require("../network/response");
 
-const User = require("../components/users/users.model");
-
-//Strategy para el signup de usuario
-passport.use(
-  "signup",
-  new LocalStrategy(
+const authenticateSignUp = (req, res, next) => {
+  passport.authenticate(
+    "signup",
     {
-      usernameField: "email",
-      passReqToCallback: true,
+      session: false,
     },
-    async (req, email, password, done) => {
-      try {
-        const newUser = new User();
-        newUser.email = email;
-        newUser.password = await newUser.encryptPassword(password);
-        newUser.username = req.body.username;
-        newUser.address = req.body.address;
-        newUser.age = req.body.age;
-        newUser.phoneNumber = req.body.phoneNumber;
-        newUser.avatar = req.body.avatar;
-        const user = await newUser.save();
-        return done(null, user, { message: "User created successfully" });
-      } catch (error) {
-        return done(error);
+    (err, user, info) => {
+      if (err) {
+        return next(err);
       }
+      return next();
     }
-  )
-);
+  )(req, res, next);
+};
 
-//Strategy para el signin de usuario
-passport.use(
-  "signin",
-  new LocalStrategy(
-    {
-      usernameField: "email",
-    },
-    async (email, password, done) => {
-      try {
-        const user = await User.findOne({ email });
-        if (!user) {
-          return done(null, false, { message: "Not User found." });
-        } else {
-          const match = await user.matchPassword(password);
-          if (match) {
-            return done(null, user, { message: "Signin successfully" });
-          } else {
-            return done(null, false, { message: "Incorrect Password." });
-          }
-        }
-      } catch (error) {
-        return done(error);
-      }
+const authenticateSignIn = (req, res, next) => {
+  passport.authenticate("signin", { session: false }, (err, user, info) => {
+    if (err) {
+      return next(err);
     }
-  )
-);
-
-passport.use(
-  "jwt",
-  new JWTstrategy(
-    {
-      secretOrKey: config.SECRET,
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    },
-    async (jwt_payload, done) => {
-      try {
-        return done(null, jwt_payload);
-      } catch (error) {
-        done(error);
-      }
+    if (!user) {
+      return responseError(req, res, "Wrong username and/or password", 401);
     }
-  )
-);
+    req.user = user;
+    return next();
+  })(req, res, next);
+};
 
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
+const authenticateToken = (req, res, next) => {
+  passport.authenticate("jwt", { session: false }, (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return responseError(req, res, "Unauthorized access", 401);
+    }
+    req.user = user;
+    return next();
+  })(req, res, next);
+};
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
+module.exports = {
+  authenticateSignUp,
+  authenticateSignIn,
+  authenticateToken,
+};

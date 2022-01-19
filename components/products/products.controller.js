@@ -1,26 +1,29 @@
 const { responseSuccess, responseError } = require("../../network/response");
 
 const {
-  getAllProducts,
-  getOneProduct,
-  postOneProduct,
-  putOneProduct,
-  deleteOneProduct,
+  findAllProducts,
+  findOneProductbyID,
+  findProductsbyCategory,
+  createOneProduct,
+  updateOneProductbyID,
+  deleteOneProductbyID,
 } = require("./products.store");
 
-//PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES O UNO POR SI ID
-const getProducts = async (req, res) => {
+//PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
+const allProducts = async (req, res) => {
   try {
-    const idp = req.params.id;
+    const products = await findAllProducts();
+    return responseSuccess(req, res, null, 200, products);
+  } catch (error) {
+    return responseError(req, res, "Internal Server Error", 500);
+  }
+};
 
-    //SI NO SE PASA ID COMO PARÁMETRO, DEVUELVE TODOS
-    if (!idp) {
-      const allProducts = await getAllProducts();
-      return responseSuccess(req, res, null, 200, allProducts);
-    }
-
-    //SI SE PASA ID COMO PARÁMETRO
-    let product = await getOneProduct(idp);
+//PARA LISTAR UN PRODUCTO POR SI ID
+const oneProduct = async (req, res) => {
+  try {
+    const idp = req.params._id;
+    let product = await findOneProductbyID(idp);
     if (product !== null) {
       return responseSuccess(req, res, null, 200, product);
     } else {
@@ -31,10 +34,25 @@ const getProducts = async (req, res) => {
   }
 };
 
-//PARA INCORPORAR PRODUCTOS AL LISTADO
-const postProducts = async (req, res) => {
+//PARA LISTAR TODOS LOS PRODUCTOS DE UNA CATEGORIA
+const categoryProducts = async (req, res) => {
   try {
-    const newProduct = await postOneProduct(req.body);
+    const category = req.params._category;
+    let products = await findProductsbyCategory(category);
+    if (products !== null) {
+      return responseSuccess(req, res, null, 200, products);
+    } else {
+      return responseError(req, res, "Products Not Found", 404);
+    }
+  } catch (error) {
+    return responseError(req, res, "Internal Server Error", 500);
+  }
+};
+
+//PARA INCORPORAR PRODUCTOS AL LISTADO
+const addProduct = async (req, res) => {
+  try {
+    const newProduct = await createOneProduct(req.body);
     if (newProduct !== null) {
       return responseSuccess(req, res, null, 200, newProduct);
     } else {
@@ -47,10 +65,10 @@ const postProducts = async (req, res) => {
 
 //PARA ACTUALIZAR UN PRODUCTO POR SI ID
 //Suponemos que solo podemos modificar la foto, el precio y el stcok
-const putProducts = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
-    const idp = req.params.id;
-    const productUpdate = await putOneProduct(idp, req.body);
+    const idp = req.params._id;
+    const productUpdate = await updateOneProductbyID(idp, req.body);
     if (productUpdate !== null) {
       return responseSuccess(req, res, null, 200, productUpdate);
     } else {
@@ -61,10 +79,12 @@ const putProducts = async (req, res) => {
   }
 };
 
-//PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
-const deleteProducts = async (req, res) => {
+//PARA BORRAR UN PRODUCTO POR SI ID
+const deleteProduct = async (req, res) => {
   try {
-    const productDelete = await deleteOneProduct(req.params.id);
+    const idp = req.params._id;
+    const productDelete = await deleteOneProductbyID(idp);
+    console.log(productDelete);
     if (productDelete !== null) {
       return responseSuccess(req, res, null, 200, productDelete);
     } else {
@@ -76,8 +96,10 @@ const deleteProducts = async (req, res) => {
 };
 
 module.exports = {
-  getProducts,
-  postProducts,
-  putProducts,
-  deleteProducts,
+  allProducts,
+  oneProduct,
+  categoryProducts,
+  addProduct,
+  updateProduct,
+  deleteProduct,
 };
