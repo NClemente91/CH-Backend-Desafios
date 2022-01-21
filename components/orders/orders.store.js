@@ -1,4 +1,4 @@
-const Cart = require("./cart.model");
+const Cart = require("./orders.model");
 const Product = require("../products/products.model");
 
 //METODO PARA LISTAR TODOS LOS CARRITOS GUARDADOS
@@ -136,10 +136,9 @@ const deleteOneProductCart = async (email, idp) => {
 };
 
 module.exports = {
-  findAllCarts,
-  findAllProductsCart,
-  findOneProductCart,
-  addOneProductCart,
-  updateOneProductCart,
-  deleteOneProductCart,
+  findAllOrdersUser,
+  findOneOrderUser,
+  addOneOrder,
+  updateOneOrder,
+  deleteOneOrder,
 };

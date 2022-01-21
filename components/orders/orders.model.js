@@ -12,7 +12,7 @@ const ItemSchema = Schema({
   },
 });
 
-const CartSchema = Schema(
+const OrderSchema = Schema(
   {
     email: {
       type: String,
@@ -24,6 +24,17 @@ const CartSchema = Schema(
       type: String,
       required: true,
     },
+    state: {
+      type: String,
+      required: true,
+      enum: [
+        "order generated",
+        "order prepared",
+        "order shipped",
+        "order delivered",
+      ],
+      default: "order generated",
+    },
   },
   {
     timestamps: true,
@@ -31,9 +42,9 @@ const CartSchema = Schema(
   }
 );
 
-CartSchema.methods.toJSON = function () {
-  const { createdAt, updatedAt, ...cart } = this.toObject();
+OrderSchema.methods.toJSON = function () {
+  const { updatedAt, ...cart } = this.toObject();
   return cart;
 };
 
-module.exports = model("Cart", CartSchema);
+module.exports = model("Order", OrderSchema);

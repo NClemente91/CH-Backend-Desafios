@@ -60,3 +60,111 @@
 [2022-01-18T09:03:13.356] [ERROR] error - Response error Products Not Found
 [2022-01-18T09:03:44.957] [ERROR] error - Response error Product or Data not found
 [2022-01-19T09:23:25.076] [ERROR] error - Response error Unauthorized access
+[2022-01-20T11:41:10.456] [ERROR] error - Response error Unauthorized access
+[2022-01-20T13:45:55.754] [ERROR] error - Response error Unauthorized access
+[2022-01-20T18:12:24.635] [ERROR] error - Response error Unauthorized access
+[2022-01-20T18:16:40.422] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:17:24.003] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:17:45.031] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:18:11.687] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:18:42.074] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:19:05.706] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:19:21.968] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:19:28.083] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:19:56.516] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:21:32.211] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:25:37.938] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:33:13.224] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:37:41.805] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:38:16.370] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:39:13.662] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:39:51.013] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:40:31.664] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:43:29.889] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:49:40.281] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:52:55.757] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:55:27.085] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:55:47.120] [ERROR] error - Response error Product Not Found
+[2022-01-20T18:59:31.386] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:00:07.468] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:02:44.258] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:03:30.483] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:03:54.317] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:05:54.580] [ERROR] error - Response error Internal Server Error
+[2022-01-20T19:06:40.648] [ERROR] error - Response error Internal Server Error
+[2022-01-20T19:07:25.103] [ERROR] error - Response error Internal Server Error
+[2022-01-20T19:07:55.853] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:12:40.774] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:15:20.710] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:15:29.202] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:15:55.975] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:16:14.554] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:18:00.687] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:18:47.703] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:19:29.541] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:19:56.476] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:21:35.499] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:22:11.089] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:23:04.228] [ERROR] error - Response error Product Not Found
+[2022-01-20T19:39:42.508] [ERROR] error - Response error Internal Server Error
+[2022-01-20T19:58:03.239] [ERROR] error - Response error Internal Server Error
+[2022-01-20T19:59:41.430] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:01:55.899] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:08:55.008] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:11:34.419] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:12:34.102] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:13:22.241] [ERROR] error - Response error Internal Server Error
+[2022-01-20T20:15:49.388] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:35:12.700] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:35:45.404] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:36:15.921] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:37:11.352] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:37:32.776] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:40:08.590] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:42:25.033] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:42:56.826] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:43:13.213] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:43:55.801] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:44:28.292] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:45:11.601] [ERROR] error - Response error Ruta 192.168.0.45:8080/ Metodo GET  Not Found
+[2022-01-21T09:45:17.677] [ERROR] error - Response error Ruta 192.168.0.45/HNAP1/ Metodo GET  Not Found
+[2022-01-21T09:46:31.370] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:47:26.712] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:49:27.500] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:51:10.292] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:53:57.520] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:59:09.938] [ERROR] error - Response error Internal Server Error
+[2022-01-21T09:59:39.606] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:01:27.759] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:02:41.778] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:03:22.472] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:03:36.892] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:11:14.283] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:12:12.752] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:12:55.834] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:13:37.194] [ERROR] error - Response error Error: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:16:14.476] [ERROR] error - Response error Error: CastError: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:24:27.753] [ERROR] error - Response error Error: CastError: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:25:43.175] [ERROR] error - Response error Error: CastError: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:26:12.595] [ERROR] error - Response error Error: CastError: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:26:32.401] [ERROR] error - Response error Error: CastError: Cast to ObjectId failed for value "61e5dfc171030ab518214f8" (type string) at path "_id" for model "Product"
+[2022-01-21T10:30:40.277] [ERROR] error - Response error [object Object]
+[2022-01-21T10:31:17.681] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T10:33:08.161] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T10:36:54.937] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T10:47:26.918] [ERROR] error - Response error Internal Server Error
+[2022-01-21T10:48:39.375] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T10:55:30.508] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T10:55:52.371] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T11:07:06.200] [ERROR] error - Response error Error al actualizar el producto
+[2022-01-21T12:03:44.487] [ERROR] error - Response error Unauthorized access
+[2022-01-21T12:05:49.795] [ERROR] error - Response error Internal Server Error
+[2022-01-21T12:35:25.364] [ERROR] error - Response error Internal Server Error
+[2022-01-21T12:36:32.489] [ERROR] error - Response error Internal Server Error
+[2022-01-21T12:38:31.801] [ERROR] error - Response error Internal Server Error
+[2022-01-21T12:39:25.589] [ERROR] error - Response error Product Not Found
+[2022-01-21T12:39:48.626] [ERROR] error - Response error Product Not Found
+[2022-01-21T12:40:42.811] [ERROR] error - Response error Product Not Found
+[2022-01-21T12:40:49.025] [ERROR] error - Response error Ruta localhost:8080/cart/delee/61e5dff671030ab518214f8c Metodo DELETE  Not Found
+[2022-01-21T12:40:54.264] [ERROR] error - Response error Product Not Found
+[2022-01-21T12:41:01.747] [ERROR] error - Response error Internal Server Error

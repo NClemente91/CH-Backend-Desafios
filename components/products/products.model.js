@@ -37,7 +37,6 @@ const ProductSchema = Schema(
   }
 );
 
-//METODO PARA NO MOSTRAR LA CONTRASEÑA
 ProductSchema.methods.toJSON = function () {
   const { code, createdAt, updatedAt, ...product } = this.toObject();
   return product;

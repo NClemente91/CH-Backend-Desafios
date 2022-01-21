@@ -10,7 +10,7 @@ const findAllProducts = async () => {
       return products;
     }
   } catch (error) {
-    return null;
+    throw new Error("Error al encontrar todos los productos disponibles");
   }
 };
 
@@ -24,7 +24,7 @@ const findOneProductbyID = async (idp) => {
       return product;
     }
   } catch (error) {
-    return null;
+    throw new Error("Error al encontrar un producto por id");
   }
 };
 
@@ -42,7 +42,7 @@ const findProductsbyCategory = async (cat) => {
       return catProducts;
     }
   } catch (error) {
-    return null;
+    throw new Error("Error al encontrar un producto por categoria");
   }
 };
 
@@ -66,7 +66,7 @@ const createOneProduct = async (prod) => {
       return null;
     }
   } catch (error) {
-    return null;
+    throw new Error("Error al incorporar un producto");
   }
 };
 
@@ -83,7 +83,7 @@ const updateOneProductbyID = async (idp, prod) => {
     }
     return product;
   } catch (error) {
-    return null;
+    throw new Error("Error al actualizar un producto");
   }
 };
 
@@ -97,7 +97,7 @@ const deleteOneProductbyID = async (idp) => {
       return null;
     }
   } catch (error) {
-    return null;
+    throw new Error("Error al borrar un producto");
   }
 };
 
