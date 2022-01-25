@@ -18,10 +18,4 @@ router.post("/signin", authenticateSignIn, signIn);
 
 router.post("/logout", logout);
 
-//PRUEBA PARA VER AUTORIZACION
-router.get("/me", authenticateToken, (req, res) => {
-  const user = req.user.email;
-  res.json(user);
-});
-
 module.exports = router;

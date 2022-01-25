@@ -13,8 +13,8 @@ const {
 
 //PARA LISTAR TODOS LAS ORDENES DEL USUARIO
 const allOrdersUser = async (req, res) => {
-  const email = req.user.email;
   try {
+    const email = req.user.email;
     const orders = await findAllOrdersUser(email);
     return responseSuccess(req, res, null, 200, orders);
   } catch (error) {
@@ -41,14 +41,13 @@ const oneOrderUser = async (req, res) => {
 //PARA INGRESAR UNA ORDEN
 const addOrder = async (req, res) => {
   try {
-    res.send("Add order");
-    // const email = req.user.email;
-    // const order = await addOneProductCart(email, id);
-    // if (addProduct !== null) {
-    //   return responseSuccess(req, res, null, 200, addProduct);
-    // } else {
-    //   return responseError(req, res, "Product Not Found", 404);
-    // }
+    const email = req.user.email;
+    const order = await addOneOrder(email);
+    if (order !== null) {
+      return responseSuccess(req, res, null, 200, order);
+    } else {
+      return responseError(req, res, "Cart Not Found", 404);
+    }
   } catch (error) {
     return responseError(req, res, "Internal Server Error", 500);
   }
@@ -57,16 +56,15 @@ const addOrder = async (req, res) => {
 //PARA MODIFICAR EL ESTADO DE UNA ORDEN
 const updateOrder = async (req, res) => {
   try {
-    res.send("Update order");
-    // const email = req.user.email;
-    // const idp = req.params.id_product;
-    // const qty = req.body.quantity;
-    // const addProduct = await updateOneProductCart(email, idp, qty);
-    // if (addProduct !== null) {
-    //   return responseSuccess(req, res, null, 200, addProduct);
-    // } else {
-    //   return responseError(req, res, "Product Not Found", 404);
-    // }
+    const email = req.user.email;
+    const ido = req.params.id_order;
+    const state = req.body.state;
+    const updateOrder = await updateOneOrder(email, ido, state);
+    if (updateOrder !== null) {
+      return responseSuccess(req, res, null, 200, updateOrder);
+    } else {
+      return responseError(req, res, "Product Not Found", 404);
+    }
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
@@ -75,15 +73,14 @@ const updateOrder = async (req, res) => {
 //PARA BORRAR UNA ORDEN
 const deleteOrder = async (req, res) => {
   try {
-    res.send("Delete order");
-    // const email = req.user.email;
-    // const idp = req.params.id_product;
-    // const deleteProductIndex = await deleteOneProductCart(email, idp);
-    // if (deleteProductIndex !== null) {
-    //   return responseSuccess(req, res, null, 200, null);
-    // } else {
-    //   return responseError(req, res, "Product Not Found", 404);
-    // }
+    const email = req.user.email;
+    const ido = req.params.id_order;
+    const deleteOrder = await deleteOneOrder(email, ido);
+    if (deleteOrder !== null) {
+      return responseSuccess(req, res, null, 200, null);
+    } else {
+      return responseError(req, res, "Product Not Found", 404);
+    }
   } catch (error) {
     return responseError(req, res, "Internal Server Error", 500);
   }

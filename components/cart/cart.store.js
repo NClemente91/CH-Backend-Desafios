@@ -1,5 +1,4 @@
 const Cart = require("./cart.model");
-const Product = require("../products/products.model");
 
 //METODO PARA LISTAR TODOS LOS CARRITOS GUARDADOS
 const findAllCarts = async () => {
@@ -16,17 +15,15 @@ const findAllCarts = async () => {
 };
 
 //METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
-const findAllProductsCart = async (id) => {
+const findAllProductsCart = async (email) => {
   try {
-    const cart = await Cart.findById(id);
-    console.log(cart);
+    const cart = await Cart.find({ email });
     if (!cart) {
       return null;
     } else {
       return cart[0].products;
     }
   } catch (error) {
-    console.log(error);
     throw new Error("Error al listar los productos de un carrito de compra");
   }
 };
@@ -35,8 +32,8 @@ const findAllProductsCart = async (id) => {
 const findOneProductCart = async (email, idp) => {
   try {
     const cart = await Cart.find({ email });
-    if (cart.producto.length !== 0) {
-      const prodCart = cart.producto.filter((p) => p._id === idp);
+    if (cart[0].products.length !== 0) {
+      const prodCart = cart[0].products.find((p) => p._id.toString() === idp);
       if (prodCart) {
         return prodCart;
       } else {

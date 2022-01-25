@@ -17,7 +17,6 @@ const OrderSchema = Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
     },
     products: [ItemSchema],
     address: {
@@ -26,7 +25,7 @@ const OrderSchema = Schema(
     },
     state: {
       type: String,
-      required: true,
+      require: true,
       enum: [
         "order generated",
         "order prepared",

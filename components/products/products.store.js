@@ -92,7 +92,7 @@ const deleteOneProductbyID = async (idp) => {
   try {
     const productDelete = await Product.deleteOne({ _id: idp });
     if (productDelete.deletedCount === 1) {
-      return this.Product.find();
+      return await Product.find();
     } else {
       return null;
     }

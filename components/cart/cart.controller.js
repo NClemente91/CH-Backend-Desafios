@@ -1,7 +1,7 @@
 const { responseSuccess, responseError } = require("../../network/response");
-const { loggerInfo, loggerError } = require("../../configs/loggers");
-const gmail = require("../../configs/email/gmail");
-const whatsapp = require("../../configs/email/twilio");
+// const { loggerInfo, loggerError } = require("../../configs/loggers");
+// const gmail = require("../../configs/email/gmail");
+// const whatsapp = require("../../configs/email/twilio");
 
 const {
   findAllCarts,
@@ -26,10 +26,10 @@ const allCarts = async (req, res) => {
 const listProductsCart = async (req, res) => {
   try {
     const email = req.user.email;
-    const idc = req.params.id_cart;
+    const idp = req.params.id_productCart;
     //SI NO SE PASA ID COMO PARÁMETRO, DEVUELVE TODOS
-    if (!idc) {
-      const allProducts = await findAllProductsCart(idc);
+    if (!idp) {
+      const allProducts = await findAllProductsCart(email);
       if (allProducts !== null) {
         return responseSuccess(req, res, null, 200, allProducts);
       } else {
@@ -58,7 +58,7 @@ const listProductsCart = async (req, res) => {
       // });
     }
     //SI SE PASA ID COMO PARÁMETRO
-    let product = await findOneProductCart(email, idc);
+    let product = await findOneProductCart(email, idp);
     if (product !== null) {
       return responseSuccess(req, res, null, 200, product);
     } else {
@@ -111,7 +111,7 @@ const deleteProductCart = async (req, res) => {
     const idp = req.params.id_product;
     const deleteProductIndex = await deleteOneProductCart(email, idp);
     if (deleteProductIndex !== null) {
-      return responseSuccess(req, res, null, 200, null);
+      return responseSuccess(req, res, null, 200, deleteProductIndex);
     } else {
       return responseError(req, res, "Product Not Found", 404);
     }

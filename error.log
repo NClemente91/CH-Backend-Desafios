@@ -168,3 +168,62 @@
 [2022-01-21T12:40:49.025] [ERROR] error - Response error Ruta localhost:8080/cart/delee/61e5dff671030ab518214f8c Metodo DELETE  Not Found
 [2022-01-21T12:40:54.264] [ERROR] error - Response error Product Not Found
 [2022-01-21T12:41:01.747] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:07:32.082] [ERROR] error - Response error Unauthorized access
+[2022-01-21T21:07:39.616] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:08:15.075] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:09:04.483] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:09:20.072] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:09:39.229] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:32:33.055] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:34:27.169] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:35:29.337] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:35:45.494] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:37:54.665] [ERROR] error - Response error Internal Server Error
+[2022-01-21T21:40:01.548] [ERROR] error - Response error Error al encontrar un producto por id
+[2022-01-21T21:43:46.241] [ERROR] error - Response error Error al encontrar un producto por id
+[2022-01-25T08:54:37.036] [ERROR] error - Response error Wrong username and/or password
+[2022-01-25T08:56:04.452] [ERROR] error - Response error Unauthorized access
+[2022-01-25T08:58:48.460] [ERROR] error - Response error Ruta localhost:8080/products/lis Metodo GET  Not Found
+[2022-01-25T08:59:08.045] [ERROR] error - Response error Error al encontrar un producto por id
+[2022-01-25T08:59:21.040] [ERROR] error - Response error Product Not Found
+[2022-01-25T09:00:16.512] [ERROR] error - Response error Products Not Found
+[2022-01-25T09:02:06.688] [ERROR] error - Response error Data not found
+[2022-01-25T09:03:39.949] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:03:46.526] [ERROR] error - Response error Product or Data not found
+[2022-01-25T09:04:13.047] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:04:21.518] [ERROR] error - Response error Product not found
+[2022-01-25T09:04:25.002] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:04:35.571] [ERROR] error - Response error Product not found
+[2022-01-25T09:05:35.971] [ERROR] error - Response error Product not found
+[2022-01-25T09:06:04.142] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:07:13.773] [ERROR] error - Response error Product not found
+[2022-01-25T09:14:34.539] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:15:06.803] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:18:28.083] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:19:03.119] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:19:34.120] [ERROR] error - Response error Product Not Found
+[2022-01-25T09:19:58.052] [ERROR] error - Response error Product Not Found
+[2022-01-25T09:30:49.066] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:31:37.178] [ERROR] error - Response error Ruta localhost:8080/cart/list/ Metodo GET  Not Found
+[2022-01-25T09:32:01.378] [ERROR] error - Response error Products Not Found
+[2022-01-25T09:37:13.457] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:38:20.646] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:38:42.661] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:39:03.660] [ERROR] error - Response error Internal Server Error
+[2022-01-25T09:41:52.159] [ERROR] error - Response error Product Not Found
+[2022-01-25T09:42:21.555] [ERROR] error - Response error Product Not Found
+[2022-01-25T09:43:08.350] [ERROR] error - Response error Product Not Found
+[2022-01-25T10:08:13.290] [ERROR] error - Response error Unauthorized access
+[2022-01-25T10:10:29.497] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:11:50.524] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:12:35.317] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:13:14.994] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:14:27.711] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:15:10.371] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:16:21.449] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:17:20.853] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:18:43.834] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:19:17.621] [ERROR] error - Response error Internal Server Error
+[2022-01-25T10:20:30.838] [ERROR] error - Response error Cart Not Found
+[2022-01-25T10:22:36.294] [ERROR] error - Response error Error al actualizar el estado de la orden
+[2022-01-25T10:23:04.635] [ERROR] error - Response error Error al actualizar el estado de la orden

@@ -30,7 +30,7 @@ const oneProduct = async (req, res) => {
       return responseError(req, res, "Product Not Found", 404);
     }
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
@@ -42,7 +42,7 @@ const categoryProducts = async (req, res) => {
     if (products !== null) {
       return responseSuccess(req, res, null, 200, products);
     } else {
-      return responseError(req, res, "Products Not Found", 404);
+      return responseError(req, res, "Products or Category Not Found", 404);
     }
   } catch (error) {
     return responseError(req, res, "Internal Server Error", 500);
@@ -84,7 +84,6 @@ const deleteProduct = async (req, res) => {
   try {
     const idp = req.params._id;
     const productDelete = await deleteOneProductbyID(idp);
-    console.log(productDelete);
     if (productDelete !== null) {
       return responseSuccess(req, res, null, 200, productDelete);
     } else {

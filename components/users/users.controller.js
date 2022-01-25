@@ -6,8 +6,7 @@ const { responseSuccess, responseError } = require("../../network/response");
 const signUp = (req, res) => {
   try {
     const message = "Signup successful";
-    const data = { user: req.user };
-    return responseSuccess(req, res, message, 200, data);
+    return responseSuccess(req, res, message, 200, null);
   } catch (error) {
     return responseError(req, res, err.message, 500);
   }

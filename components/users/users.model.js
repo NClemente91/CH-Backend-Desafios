@@ -48,4 +48,9 @@ UserSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+UserSchema.methods.toJSON = function () {
+  const { password, createdAt, updatedAt, ...user } = this.toObject();
+  return user;
+};
+
 module.exports = model("Users", UserSchema);

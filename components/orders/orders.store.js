@@ -1,137 +1,76 @@
-const Cart = require("./orders.model");
-const Product = require("../products/products.model");
+const Cart = require("../cart/cart.model");
+const Order = require("./orders.model");
 
-//METODO PARA LISTAR TODOS LOS CARRITOS GUARDADOS
-const findAllCarts = async () => {
+//METODO PARA LISTAR TODAS LAS ORDENES DE UN USUARIO
+const findAllOrdersUser = async (email) => {
   try {
-    const carts = await Cart.find();
-    if (!carts) {
+    const orders = await Order.find({ email });
+    if (!orders) {
       return null;
     } else {
-      return carts;
+      return orders;
     }
   } catch (error) {
-    throw new Error("Error al encontrar todos los carritos de compra");
+    throw new Error("Error al encontrar todas las ordenes de compra");
   }
 };
 
-//METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
-const findAllProductsCart = async (id) => {
+//METODO PARA LISTAR UNA ORDEN DE UN USUARIO POR SU ID
+const findOneOrderUser = async (email, ido) => {
   try {
-    const cart = await Cart.findById(id);
-    console.log(cart);
-    if (!cart) {
+    const order = await Order.find({ email, _id: ido });
+    if (!order) {
       return null;
     } else {
-      return cart[0].products;
+      return order[0];
     }
   } catch (error) {
-    console.log(error);
-    throw new Error("Error al listar los productos de un carrito de compra");
+    throw new Error("Error al listar una orden de compra");
   }
 };
 
-//METODO PARA LISTAR UN PRODUCTO GUARDADO EN EL CARRITO POR SU ID
-const findOneProductCart = async (email, idp) => {
+//METODO PARA INCORPORAR UNA ORDEN
+const addOneOrder = async (email) => {
   try {
     const cart = await Cart.find({ email });
-    if (cart.producto.length !== 0) {
-      const prodCart = cart.producto.filter((p) => p._id === idp);
-      if (prodCart) {
-        return prodCart;
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  } catch (error) {
-    throw new Error("Error al listar un producto de un carrito de compra");
-  }
-};
-
-//METODO PARA INCORPORAR UN PRODUCTO AL CARRITO POR SU ID
-const addOneProductCart = async (email, idp, qty, address) => {
-  try {
-    const cart = await Cart.find({ email });
-    if (cart.length === 0) {
-      const newCart = {
+    if (cart.length !== 0) {
+      const { products, address } = cart[0];
+      const newOrder = await Order.create({
         email,
-        products: [{ _id: idp, quantity: qty }],
+        products,
         address,
-      };
-      const addProductCart = Cart.create(newCart);
-      return addProductCart;
-    } else {
-      const cartId = cart[0]._id;
-      const indexAddProduct = cart[0].products.findIndex(
-        (p) => p._id.toString() === idp
-      );
-      if (indexAddProduct !== -1) {
-        cart[0].products[indexAddProduct].quantity += qty;
-        const addProductCart = await Cart.findOneAndUpdate(
-          { _id: cartId },
-          { products: cart[0].products },
-          { new: true }
-        );
-        return addProductCart;
-      }
-      const cartProducts = [...cart[0].products, { _id: idp, quantity: qty }];
-      const addNewProductCart = await Cart.findOneAndUpdate(
-        { _id: cartId },
-        { products: cartProducts },
-        { new: true }
-      );
-      return addNewProductCart;
-    }
-  } catch (error) {
-    throw new Error("Error al agregar un producto a un carrito de compra");
-  }
-};
-
-//METODO PARA MODIFICAR UN PRODUCTO DEL CARRITO POR SU ID
-const updateOneProductCart = async (email, idp, qty) => {
-  try {
-    const cart = await Cart.find({ email });
-    const cartId = cart[0]._id;
-    const indexUpdateQtyProduct = cart[0].products.findIndex(
-      (p) => p._id.toString() === idp
-    );
-    if (indexUpdateQtyProduct !== -1) {
-      cart[0].products[indexUpdateQtyProduct].quantity = qty;
-      const updateCart = await Cart.findOneAndUpdate(
-        { _id: cartId },
-        { products: cart[0].products },
-        { new: true }
-      );
-      return updateCart;
+      });
+      //BORRAMOS EL CARRITO UNA VEZ GENERADA LA ORDEN
+      await Cart.findOneAndDelete({ email });
+      return newOrder;
     }
     return null;
   } catch (error) {
-    throw new Error("Error al actualizar el producto");
+    throw new Error("Error al generar la orden");
   }
 };
 
-//METODO PARA BORRAR UN PRODUCTO DEL CARRITO POR SU ID
-const deleteOneProductCart = async (email, idp) => {
+//METODO PARA MODIFICAR EL ESTADO UNA ORDEN
+const updateOneOrder = async (email, ido, state) => {
   try {
-    const cart = await Cart.find({ email });
-    const cartId = cart[0]._id;
-    const indexDeleteProduct = cart[0].products.findIndex(
-      (p) => p._id.toString() === idp
+    const orderUpdate = await Order.findByIdAndUpdate(
+      { email, _id: ido },
+      { state },
+      { new: true }
     );
-    if (indexDeleteProduct !== -1) {
-      cart[0].products.splice(indexDeleteProduct, 1);
-      const deleteProductCart = await Cart.findOneAndUpdate(
-        { _id: cartId },
-        { products: cart[0].products },
-        { new: true }
-      );
-      return deleteProductCart;
-    }
-    return null;
+    return orderUpdate;
   } catch (error) {
-    throw new Error("Error al borrar un producto a un carrito de compra");
+    throw new Error("Error al actualizar el estado de la orden");
+  }
+};
+
+//METODO PARA BORRAR UNA ORDEN
+const deleteOneOrder = async (email, ido) => {
+  try {
+    const orderDelete = await Order.findByIdAndDelete({ email, _id: ido });
+    return orderDelete;
+  } catch (error) {
+    throw new Error("Error al borrar una orden");
   }
 };
 
