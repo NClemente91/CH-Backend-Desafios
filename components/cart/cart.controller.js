@@ -75,7 +75,7 @@ const addProductCart = async (req, res) => {
     const email = req.user.email;
     const idp = req.params.id_product;
     const qty = req.body.quantity;
-    const address = req.body.address;
+    const address = req.user.address;
     const addProduct = await addOneProductCart(email, idp, qty, address);
     if (addProduct !== null) {
       return responseSuccess(req, res, null, 200, addProduct);

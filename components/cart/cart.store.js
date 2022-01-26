@@ -17,7 +17,10 @@ const findAllCarts = async () => {
 //METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
 const findAllProductsCart = async (email) => {
   try {
-    const cart = await Cart.find({ email });
+    const cart = await Cart.find({ email }).populate({
+      path: "products",
+      populate: { path: "_id", select: "productName price" },
+    });
     if (!cart) {
       return null;
     } else {
@@ -70,7 +73,10 @@ const addOneProductCart = async (email, idp, qty, address) => {
           { _id: cartId },
           { products: cart[0].products },
           { new: true }
-        );
+        ).populate({
+          path: "products",
+          populate: { path: "_id", select: "productName price" },
+        });
         return addProductCart;
       }
       const cartProducts = [...cart[0].products, { _id: idp, quantity: qty }];
@@ -78,7 +84,10 @@ const addOneProductCart = async (email, idp, qty, address) => {
         { _id: cartId },
         { products: cartProducts },
         { new: true }
-      );
+      ).populate({
+        path: "products",
+        populate: { path: "_id", select: "productName price" },
+      });
       return addNewProductCart;
     }
   } catch (error) {

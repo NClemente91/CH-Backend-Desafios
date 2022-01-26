@@ -19,7 +19,11 @@ const signIn = (req, res) => {
         return responseError(req, res, err.message, 500);
       }
       const message = "Signin successful";
-      const body = { _id: req.user._id, email: req.user.email };
+      const body = {
+        _id: req.user._id,
+        email: req.user.email,
+        address: req.user.address,
+      };
       const token = jwt.sign({ user: body }, config.SECRET, {
         expiresIn: config.TOKEN_EXPIRE,
       });
@@ -33,7 +37,7 @@ const signIn = (req, res) => {
 const logout = (req, res) => {
   try {
     const newSecret = `${config.SECRET}expire`;
-    const body = { _id: "", email: "" };
+    const body = { _id: "", email: "", address: "" };
     const token = jwt.sign({ user: body }, newSecret, {
       expiresIn: 10,
     });

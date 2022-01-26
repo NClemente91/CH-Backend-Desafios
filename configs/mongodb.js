@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("../configs/config");
 
-const { loggerInfo, loggerWarn, loggerError } = require("./loggers");
+const { loggerInfo, loggerError } = require("./loggers");
 
 const dbConnection = async () => {
   try {

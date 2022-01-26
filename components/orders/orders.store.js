@@ -18,7 +18,10 @@ const findAllOrdersUser = async (email) => {
 //METODO PARA LISTAR UNA ORDEN DE UN USUARIO POR SU ID
 const findOneOrderUser = async (email, ido) => {
   try {
-    const order = await Order.find({ email, _id: ido });
+    const order = await Order.find({ email, _id: ido }).populate({
+      path: "products",
+      populate: { path: "_id", select: "productName price" },
+    });
     if (!order) {
       return null;
     } else {
