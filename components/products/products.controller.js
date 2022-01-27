@@ -9,32 +9,34 @@ const {
   deleteOneProductbyID,
 } = require("./products.store");
 
-//PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
+//Show all available products
 const allProducts = async (req, res) => {
   try {
     const products = await findAllProducts();
-    return responseSuccess(req, res, null, 200, products);
-  } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
-  }
-};
-
-//PARA LISTAR UN PRODUCTO POR SI ID
-const oneProduct = async (req, res) => {
-  try {
-    const idp = req.params._id;
-    let product = await findOneProductbyID(idp);
-    if (product !== null) {
-      return responseSuccess(req, res, null, 200, product);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
+    if (products !== null) {
+      return responseSuccess(req, res, null, 200, products);
     }
+    return responseError(req, res, "Products not found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA LISTAR TODOS LOS PRODUCTOS DE UNA CATEGORIA
+//Show a product by its id
+const oneProduct = async (req, res) => {
+  try {
+    const idp = req.params._id;
+    const product = await findOneProductbyID(idp);
+    if (product !== null) {
+      return responseSuccess(req, res, null, 200, product);
+    }
+    return responseError(req, res, "Product Not Found", 404);
+  } catch (error) {
+    return responseError(req, res, error.message, 500);
+  }
+};
+
+//Show the products of a category
 const categoryProducts = async (req, res) => {
   try {
     const category = req.params._category;
@@ -45,26 +47,21 @@ const categoryProducts = async (req, res) => {
       return responseError(req, res, "Products or Category Not Found", 404);
     }
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA INCORPORAR PRODUCTOS AL LISTADO
+//Allows you to add a product
 const addProduct = async (req, res) => {
   try {
     const newProduct = await createOneProduct(req.body);
-    if (newProduct !== null) {
-      return responseSuccess(req, res, null, 200, newProduct);
-    } else {
-      return responseError(req, res, "Data not found", 404);
-    }
+    return responseSuccess(req, res, null, 200, newProduct);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA ACTUALIZAR UN PRODUCTO POR SI ID
-//Suponemos que solo podemos modificar la foto, el precio y el stcok
+//Allows you to update a product. Only photo, price or stock
 const updateProduct = async (req, res) => {
   try {
     const idp = req.params._id;
@@ -75,11 +72,11 @@ const updateProduct = async (req, res) => {
       return responseError(req, res, "Product or Data not found", 404);
     }
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA BORRAR UN PRODUCTO POR SI ID
+//Allows you to delete a product
 const deleteProduct = async (req, res) => {
   try {
     const idp = req.params._id;
@@ -90,7 +87,7 @@ const deleteProduct = async (req, res) => {
       return responseError(req, res, "Product not found", 404);
     }
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 

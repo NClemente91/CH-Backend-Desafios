@@ -37,6 +37,7 @@ const ProductSchema = Schema(
   }
 );
 
+//Method to modify the data output
 ProductSchema.methods.toJSON = function () {
   const { code, createdAt, updatedAt, ...product } = this.toObject();
   return product;

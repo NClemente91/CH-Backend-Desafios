@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Chat Proyecto Final</title>
+  </head>
+  <body>
+    <div class="container-form">
+      <div class="contenedor mt-5">
+        <div>
+          <h2 class="title-product mt-3">Central de Mensajes</h2>
+          <div>
+            <div class="mb-3">
+              <input
+                type="email"
+                name="username"
+                class="form-control"
+                id="username"
+                placeholder="Tu Nombre"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                name="texto"
+                class="form-control"
+                id="texto"
+                placeholder="Cuéntanos algo..."
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnForm"
+              onclick="addMessage()"
+            >
+              ENVIAR
+            </button>
+          </div>
+        </div>
+        <div class="mt-2" id="messages"></div>
+      </div>
+    </div>
+    <script src="./ejs.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

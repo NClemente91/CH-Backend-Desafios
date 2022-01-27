@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-//MIDDLEWARE
+//Middlewares
+const { validateId } = require("../../middleware/validate-id");
+const {
+  validateCategory,
+  validateAddProduct,
+  validateUpdateProduct,
+} = require("../../middleware/validate-products");
 const { validateRol } = require("../../middleware/validate-rol");
 
-//CONTROLLERS
+//Controllers
 const {
   allProducts,
   oneProduct,
@@ -14,12 +20,16 @@ const {
   deleteProduct,
 } = require("./products.controller");
 
-//RUTAS
+//Routes
 router.get("/list", allProducts);
-router.get("/list/:_id", oneProduct);
-router.get("/list/category/:_category", categoryProducts);
-router.post("/add", validateRol, addProduct);
-router.put("/update/:_id", validateRol, updateProduct);
-router.delete("/delete/:_id", validateRol, deleteProduct);
+router.get("/list/:_id", validateId, oneProduct);
+router.get("/list/category/:_category", validateCategory, categoryProducts);
+router.post("/add", [validateRol, validateAddProduct], addProduct);
+router.put(
+  "/update/:_id",
+  [validateId, validateRol, validateUpdateProduct],
+  updateProduct
+);
+router.delete("/delete/:_id", validateId, validateRol, deleteProduct);
 
 module.exports = router;

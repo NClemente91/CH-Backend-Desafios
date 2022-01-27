@@ -5,8 +5,7 @@ const router = express.Router();
 const {
   authenticateSignUp,
   authenticateSignIn,
-  authenticateToken,
-} = require("../../middleware/authorization");
+} = require("../../middleware/validate-auth");
 
 //CONTROLLERS
 const { signUp, signIn, logout } = require("./users.controller");

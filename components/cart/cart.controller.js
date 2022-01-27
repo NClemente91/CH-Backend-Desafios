@@ -19,26 +19,31 @@ const allCarts = async (req, res) => {
   }
 };
 
-//PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO O UNO POR SI ID GUARDADO EN EL CARRITO
-const listProductsCart = async (req, res) => {
+//PARA LISTAR UN PRODUCTO POR SI ID GUARDADO EN EL CARRITO
+const listProductCart = async (req, res) => {
   try {
     const email = req.user.email;
     const idp = req.params.id_productCart;
-    //SI NO SE PASA ID COMO PARÁMETRO, DEVUELVE TODOS
-    if (!idp) {
-      const allProducts = await findAllProductsCart(email);
-      if (allProducts !== null) {
-        return responseSuccess(req, res, null, 200, allProducts);
-      } else {
-        return responseError(req, res, "Products Not Found", 404);
-      }
-    }
-    //SI SE PASA ID COMO PARÁMETRO
     let product = await findOneProductCart(email, idp);
     if (product !== null) {
       return responseSuccess(req, res, null, 200, product);
     } else {
       return responseError(req, res, "Product Not Found", 404);
+    }
+  } catch (error) {
+    return responseError(req, res, "Internal Server Error", 500);
+  }
+};
+
+//PARA LISTAR UN PRODUCTO POR SI ID GUARDADO EN EL CARRITO
+const listProductsCart = async (req, res) => {
+  try {
+    const email = req.user.email;
+    const allProducts = await findAllProductsCart(email);
+    if (allProducts !== null) {
+      return responseSuccess(req, res, null, 200, allProducts);
+    } else {
+      return responseError(req, res, "Products Not Found", 404);
     }
   } catch (error) {
     return responseError(req, res, "Internal Server Error", 500);
@@ -98,6 +103,7 @@ const deleteProductCart = async (req, res) => {
 
 module.exports = {
   allCarts,
+  listProductCart,
   listProductsCart,
   addProductCart,
   updateProductCart,

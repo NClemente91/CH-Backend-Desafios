@@ -243,3 +243,7 @@
 [2022-01-25T17:14:59.295] [ERROR] error - Response error Internal Server Error
 [2022-01-25T21:58:46.359] [ERROR] error - Response error Internal Server Error
 [2022-01-25T22:00:58.103] [ERROR] error - Response error Product Not Found
+[2022-01-27T20:34:10.160] [ERROR] error - Response error Unauthorized access
+[2022-01-27T20:35:15.702] [ERROR] error - Response error "_id" with value "61e5de9a71030ab518214f8" fails to match the valid mongo id pattern
+[2022-01-27T20:35:30.556] [ERROR] error - Response error Product Not Found
+[2022-01-27T20:36:10.858] [ERROR] error - Response error "price" is required

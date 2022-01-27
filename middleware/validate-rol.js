@@ -1,3 +1,5 @@
+const { responseError } = require("../network/response");
+
 const administrador = true;
 
 //VALIDAMOS EL ROL
@@ -6,22 +8,17 @@ const validateRol = (req, res, next) => {
     if (administrador) {
       return next();
     } else {
-      return res.status(403).json({
-        code: "ERR",
-        message: `Ruta ${
+      return responseError(
+        req,
+        res,
+        `Ruta ${
           req.headers.host + req.originalUrl
         } Metodo ${req.method.toUpperCase()}  no autorizada`,
-        success: false,
-        data: null,
-      });
+        403
+      );
     }
   } catch (error) {
-    return res.status(500).json({
-      code: "ERROR",
-      message: error.message,
-      success: false,
-      data: null,
-    });
+    return responseError(req, res, error.message, 500);
   }
 };
 

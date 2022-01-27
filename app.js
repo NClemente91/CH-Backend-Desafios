@@ -9,8 +9,11 @@ const dbConnection = require("./configs/mongodb");
 const { loggerInfo, loggerError } = require("./configs/loggers");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
+const initWsServer = require("./configs/socket");
 
 const app = express();
+
+const server = require("http").Server(app);
 
 app.use(cors());
 dbConnection();
@@ -23,6 +26,8 @@ app.use(express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+initWsServer(server);
 
 //MASTER
 if (config.FORKORCLUSTER === "CLUSTER" && cluster.isMaster) {
@@ -43,7 +48,7 @@ if (config.FORKORCLUSTER === "CLUSTER" && cluster.isMaster) {
   //WORKERS
   router(app);
 
-  app.listen(config.PORT, () => {
+  server.listen(config.PORT, () => {
     try {
       loggerInfo.info(`Servidor conectado en puerto ${config.PORT}`);
     } catch (error) {

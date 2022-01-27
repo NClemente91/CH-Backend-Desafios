@@ -1,6 +1,6 @@
 const Product = require("./products.model");
 
-//METODO PARA LISTAR TODOS LOS PRODUCTOS DISPONIBLES
+//Function that returns the available products in MongoDB
 const findAllProducts = async () => {
   try {
     const products = await Product.find();
@@ -10,11 +10,11 @@ const findAllProducts = async () => {
       return products;
     }
   } catch (error) {
-    throw new Error("Error al encontrar todos los productos disponibles");
+    throw new Error("Error searching all available products");
   }
 };
 
-//METODO PARA LISTAR UN PRODUCTO POR SU ID
+//Function that returns a product by its id in MongoDB
 const findOneProductbyID = async (idp) => {
   try {
     const product = await Product.findById(idp);
@@ -24,53 +24,40 @@ const findOneProductbyID = async (idp) => {
       return product;
     }
   } catch (error) {
-    throw new Error("Error al encontrar un producto por id");
+    throw new Error("Error searching for a product by id");
   }
 };
 
-//METODO PARA LISTAR PRODUCTOS QUE COINCIDAN EN LA CATEGORÍA
+//Function that returns the products that match in a category in MongoDB
 const findProductsbyCategory = async (cat) => {
   try {
-    if (cat !== "frutas" && cat !== "verduras") {
+    const products = await Product.find();
+    if (!products) {
       return null;
-    } else {
-      const products = await Product.find();
-      if (!products) {
-        return null;
-      }
-      catProducts = products.filter((p) => p.category === cat);
-      return catProducts;
     }
+    catProducts = products.filter((p) => p.category === cat);
+    return catProducts;
   } catch (error) {
-    throw new Error("Error al encontrar un producto por categoria");
+    throw new Error("Error when searching products by category");
   }
 };
 
-//METODO PARA INCORPORAR UN PRODUCTO AL LISTADO
+//Function to add a product to MongoDB
 const createOneProduct = async (prod) => {
   try {
-    const { productName, description, photo, price, stock, category } = prod;
-    if (productName && description && photo && price && stock && category) {
-      const newProduct = {
-        productName,
-        description,
-        code: Math.floor(Math.random() * (999 - 1)) + 1,
-        photo,
-        price,
-        stock,
-        category,
-      };
-      const addProduct = await Product.create(newProduct);
-      return addProduct;
-    } else {
-      return null;
-    }
+    const newProduct = {
+      ...prod,
+      code: Math.floor(Math.random() * (999 - 1)) + 1,
+    };
+    console.log(newProduct);
+    const addProduct = await Product.create(newProduct);
+    return addProduct;
   } catch (error) {
-    throw new Error("Error al incorporar un producto");
+    throw new Error("Error incorporating a product");
   }
 };
 
-//METODO PARA ACTUALIZAR UN PRODUCTO POR SI ID
+//Function to update a product by its id in MongoDB
 const updateOneProductbyID = async (idp, prod) => {
   try {
     const product = await Product.findOneAndUpdate(
@@ -83,11 +70,11 @@ const updateOneProductbyID = async (idp, prod) => {
     }
     return product;
   } catch (error) {
-    throw new Error("Error al actualizar un producto");
+    throw new Error("Error updating a product");
   }
 };
 
-//METODO PARA BORRAR UN PRODUCTO POR SI ID (Falta volver a escribir el aRCHIVO)
+//Function to remove a product by its id in MongoDB
 const deleteOneProductbyID = async (idp) => {
   try {
     const productDelete = await Product.deleteOne({ _id: idp });
@@ -97,7 +84,7 @@ const deleteOneProductbyID = async (idp) => {
       return null;
     }
   } catch (error) {
-    throw new Error("Error al borrar un producto");
+    throw new Error("Error removing a product");
   }
 };
 
