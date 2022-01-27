@@ -12,6 +12,7 @@ const authenticateSignUp = (req, res, next) => {
       if (err) {
         return next(err);
       }
+      req.userRegister = user;
       return next();
     }
   )(req, res, next);

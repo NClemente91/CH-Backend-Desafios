@@ -1,7 +1,4 @@
 const { responseSuccess, responseError } = require("../../network/response");
-// const { loggerInfo, loggerError } = require("../../configs/loggers");
-// const gmail = require("../../configs/email/gmail");
-// const whatsapp = require("../../configs/email/twilio");
 
 const {
   findAllCarts,
@@ -35,27 +32,6 @@ const listProductsCart = async (req, res) => {
       } else {
         return responseError(req, res, "Products Not Found", 404);
       }
-      // const asunto = `Nuevo pedido de`;
-      // const mensaje = `Productos comprados`;
-      // const adjunto = ``;
-      // const to = process.env.EMAIL_ADMIN;
-      // const numero = `458565456`; //MODIFICAR MAS ADELANTE
-      // gmail.enviarMail(asunto, mensaje, adjunto, to, (err, info) => {
-      //   if (err) {
-      //     loggerInfo.info(`Error en nodemailer-gmail ${err}`);
-      //     loggerError.error(`Error en nodemailer-gmail ${err}`);
-      //   } else {
-      //     loggerInfo.info(`Email enviado con nodemailer-gmail ${info}`);
-      //   }
-      // });
-      // whatsapp.enviarSMS(mensaje, numero, (err, info) => {
-      //   if (err) {
-      //     loggerInfo.info(`Error en twilio-Whatsapp ${err}`);
-      //     loggerError.error(`Error en twilio-Whatsapp ${err}`);
-      //   } else {
-      //     loggerInfo.info(`Email enviado con twilio-Whatsapp ${info}`);
-      //   }
-      // });
     }
     //SI SE PASA ID COMO PARÁMETRO
     let product = await findOneProductCart(email, idp);

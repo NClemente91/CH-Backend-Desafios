@@ -1,7 +1,5 @@
 const { responseSuccess, responseError } = require("../../network/response");
-const { loggerInfo, loggerError } = require("../../configs/loggers");
-const gmail = require("../../configs/email/gmail");
-const whatsapp = require("../../configs/email/twilio");
+const { emailOrder } = require("../../configs/node-gmail");
 
 const {
   findAllOrdersUser,
@@ -44,6 +42,8 @@ const addOrder = async (req, res) => {
     const email = req.user.email;
     const order = await addOneOrder(email);
     if (order !== null) {
+      const { email, address, state } = order;
+      emailOrder(email, address, state);
       return responseSuccess(req, res, null, 200, order);
     } else {
       return responseError(req, res, "Cart Not Found", 404);

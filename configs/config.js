@@ -14,4 +14,6 @@ module.exports = {
   MONGO_URL: process.env.MONGO_URL,
   SECRET: process.env.SECRET,
   TOKEN_EXPIRE: process.env.TOKEN_EXPIRE || "1h",
+  MAIL_USER: process.env.MAIL_USER,
+  MAIL_PASS: process.env.MAIL_PASS,
 };

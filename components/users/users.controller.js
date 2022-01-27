@@ -1,11 +1,14 @@
 const jwt = require("jsonwebtoken");
 const config = require("../../configs/config");
+const { emailRegister } = require("../../configs/node-gmail");
 
 const { responseSuccess, responseError } = require("../../network/response");
 
 const signUp = (req, res) => {
   try {
     const message = "Signup successful";
+    const userRegister = req.userRegister;
+    emailRegister(userRegister);
     return responseSuccess(req, res, message, 200, null);
   } catch (error) {
     return responseError(req, res, err.message, 500);
