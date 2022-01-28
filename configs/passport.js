@@ -5,9 +5,14 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 const config = require("../configs/config");
 
-const User = require("../components/users/users.model");
+const { encryptPassword, matchPassword } = require("../configs/bcrypt");
 
-//Strategy para el signup de usuario
+const {
+  findOneUser,
+  createOneUser,
+} = require("../components/users/users.store");
+
+//Strategy for registering an user
 passport.use(
   "signup",
   new LocalStrategy(
@@ -17,15 +22,16 @@ passport.use(
     },
     async (req, email, password, done) => {
       try {
-        const newUser = new User();
-        newUser.email = email;
-        newUser.password = await newUser.encryptPassword(password);
-        newUser.username = req.body.username;
-        newUser.address = req.body.address;
-        newUser.age = req.body.age;
-        newUser.phoneNumber = req.body.phoneNumber;
-        newUser.avatar = req.body.avatar;
-        const user = await newUser.save();
+        const newUser = {
+          email,
+          password: await encryptPassword(password),
+          username: req.body.username,
+          address: req.body.address,
+          age: req.body.age,
+          phoneNumber: req.body.phoneNumber,
+          avatar: req.body.avatar,
+        };
+        const user = await createOneUser(newUser);
         return done(null, user, { message: "User created successfully" });
       } catch (error) {
         return done(error);
@@ -34,7 +40,7 @@ passport.use(
   )
 );
 
-//Strategy para el signin de usuario
+//Strategy for user login
 passport.use(
   "signin",
   new LocalStrategy(
@@ -43,11 +49,11 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await findOneUser(email);
         if (!user) {
           return done(null, false, { message: "Not User found." });
         } else {
-          const match = await user.matchPassword(password);
+          const match = await matchPassword(user, password);
           if (match) {
             return done(null, user, { message: "Signin successfully" });
           } else {
@@ -61,6 +67,7 @@ passport.use(
   )
 );
 
+//Strategy for using JWT
 passport.use(
   "jwt",
   new JWTstrategy(

@@ -41,15 +41,7 @@ const UserSchema = Schema(
   }
 );
 
-UserSchema.methods.encryptPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
-  return await bcrypt.hash(password, salt);
-};
-
-UserSchema.methods.matchPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
-
+//Method to modify the data output
 UserSchema.methods.toJSON = function () {
   const { password, createdAt, updatedAt, ...user } = this.toObject();
   return user;
