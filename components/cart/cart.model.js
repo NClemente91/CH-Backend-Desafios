@@ -31,6 +31,7 @@ const CartSchema = Schema(
   }
 );
 
+//Method to modify the data output
 CartSchema.methods.toJSON = function () {
   const { createdAt, updatedAt, ...cart } = this.toObject();
   return cart;

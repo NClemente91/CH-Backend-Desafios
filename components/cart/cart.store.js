@@ -1,6 +1,6 @@
 const Cart = require("./cart.model");
 
-//METODO PARA LISTAR TODOS LOS CARRITOS GUARDADOS
+//Function that returns all shopping carts in MongoDB
 const findAllCarts = async () => {
   try {
     const carts = await Cart.find();
@@ -10,11 +10,11 @@ const findAllCarts = async () => {
       return carts;
     }
   } catch (error) {
-    throw new Error("Error al encontrar todos los carritos de compra");
+    throw new Error("Error searching all shopping carts");
   }
 };
 
-//METODO PARA LISTAR TODOS LOS PRODUCTOS GUARDADOS EN EL CARRITO
+//Function that returns all the products of a shopping cart in MongoDB
 const findAllProductsCart = async (email) => {
   try {
     const cart = await Cart.find({ email }).populate({
@@ -27,11 +27,11 @@ const findAllProductsCart = async (email) => {
       return cart[0].products;
     }
   } catch (error) {
-    throw new Error("Error al listar los productos de un carrito de compra");
+    throw new Error("Error searching for all products in a shopping cart");
   }
 };
 
-//METODO PARA LISTAR UN PRODUCTO GUARDADO EN EL CARRITO POR SU ID
+//Function that returns a product by its id from a shopping cart in MongoDB
 const findOneProductCart = async (email, idp) => {
   try {
     const cart = await Cart.find({ email });
@@ -39,18 +39,17 @@ const findOneProductCart = async (email, idp) => {
       const prodCart = cart[0].products.find((p) => p._id.toString() === idp);
       if (prodCart) {
         return prodCart;
-      } else {
-        return null;
       }
-    } else {
-      return null;
     }
+    return null;
   } catch (error) {
-    throw new Error("Error al listar un producto de un carrito de compra");
+    throw new Error(
+      "Error searching for a product by its id in a shopping cart"
+    );
   }
 };
 
-//METODO PARA INCORPORAR UN PRODUCTO AL CARRITO POR SU ID
+//Function to add a product to a shopping cart in MongoDB
 const addOneProductCart = async (email, idp, qty, address) => {
   try {
     const cart = await Cart.find({ email });
@@ -91,11 +90,11 @@ const addOneProductCart = async (email, idp, qty, address) => {
       return addNewProductCart;
     }
   } catch (error) {
-    throw new Error("Error al agregar un producto a un carrito de compra");
+    throw new Error("Error adding a product to a shopping cart");
   }
 };
 
-//METODO PARA MODIFICAR UN PRODUCTO DEL CARRITO POR SU ID
+//Function to update a product to a shopping cart in MongoDB
 const updateOneProductCart = async (email, idp, qty) => {
   try {
     const cart = await Cart.find({ email });
@@ -109,16 +108,19 @@ const updateOneProductCart = async (email, idp, qty) => {
         { _id: cartId },
         { products: cart[0].products },
         { new: true }
-      );
+      ).populate({
+        path: "products",
+        populate: { path: "_id", select: "productName price" },
+      });
       return updateCart;
     }
     return null;
   } catch (error) {
-    throw new Error("Error al actualizar el producto");
+    throw new Error("Error updating a product to a shopping cart");
   }
 };
 
-//METODO PARA BORRAR UN PRODUCTO DEL CARRITO POR SU ID
+//Function to remove a product to a shopping cart in MongoDB
 const deleteOneProductCart = async (email, idp) => {
   try {
     const cart = await Cart.find({ email });
@@ -132,12 +134,15 @@ const deleteOneProductCart = async (email, idp) => {
         { _id: cartId },
         { products: cart[0].products },
         { new: true }
-      );
+      ).populate({
+        path: "products",
+        populate: { path: "_id", select: "productName price" },
+      });
       return deleteProductCart;
     }
     return null;
   } catch (error) {
-    throw new Error("Error al borrar un producto a un carrito de compra");
+    throw new Error("Error removing a product to a shopping cart");
   }
 };
 

@@ -38,7 +38,7 @@ const findProductsbyCategory = async (cat) => {
     catProducts = products.filter((p) => p.category === cat);
     return catProducts;
   } catch (error) {
-    throw new Error("Error when searching products by category");
+    throw new Error("Error searching products by category");
   }
 };
 
@@ -53,7 +53,7 @@ const createOneProduct = async (prod) => {
     const addProduct = await Product.create(newProduct);
     return addProduct;
   } catch (error) {
-    throw new Error("Error incorporating a product");
+    throw new Error("Error adding a product");
   }
 };
 

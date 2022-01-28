@@ -9,17 +9,20 @@ const {
   deleteOneProductCart,
 } = require("./cart.store");
 
-//PARA LISTAR TODOS LOS CARRITOS GUARDADOS (Solo con rol administrador)
+//Show all available carts (Only available for administrator)
 const allCarts = async (req, res) => {
   try {
     const carts = await findAllCarts();
-    return responseSuccess(req, res, null, 200, carts);
+    if (carts !== null) {
+      return responseSuccess(req, res, null, 200, carts);
+    }
+    return responseError(req, res, "Carts Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA LISTAR UN PRODUCTO POR SI ID GUARDADO EN EL CARRITO
+//Show an existing product in a specific cart
 const listProductCart = async (req, res) => {
   try {
     const email = req.user.email;
@@ -27,30 +30,28 @@ const listProductCart = async (req, res) => {
     let product = await findOneProductCart(email, idp);
     if (product !== null) {
       return responseSuccess(req, res, null, 200, product);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Product Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA LISTAR UN PRODUCTO POR SI ID GUARDADO EN EL CARRITO
+//Show all existing products in a specific cart
 const listProductsCart = async (req, res) => {
   try {
     const email = req.user.email;
     const allProducts = await findAllProductsCart(email);
     if (allProducts !== null) {
       return responseSuccess(req, res, null, 200, allProducts);
-    } else {
-      return responseError(req, res, "Products Not Found", 404);
     }
+    return responseError(req, res, "Products Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA INCORPORAR PRODUCTOS AL CARRITO POR SU ID
+//Allows you to add a product to a specific cart
 const addProductCart = async (req, res) => {
   try {
     const email = req.user.email;
@@ -60,15 +61,14 @@ const addProductCart = async (req, res) => {
     const addProduct = await addOneProductCart(email, idp, qty, address);
     if (addProduct !== null) {
       return responseSuccess(req, res, null, 200, addProduct);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Product Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA MODIFICAR PRODUCTOS DEL CARRITO POR SU ID
+//Allows you to update the quantity of a product in a specific cart
 const updateProductCart = async (req, res) => {
   try {
     const email = req.user.email;
@@ -77,15 +77,14 @@ const updateProductCart = async (req, res) => {
     const addProduct = await updateOneProductCart(email, idp, qty);
     if (addProduct !== null) {
       return responseSuccess(req, res, null, 200, addProduct);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Product Not Found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA BORRAR UN PRODUCTO DEL CARRITO POR SI ID
+//Allows you to delete a product from a specific cart
 const deleteProductCart = async (req, res) => {
   try {
     const email = req.user.email;
@@ -93,11 +92,10 @@ const deleteProductCart = async (req, res) => {
     const deleteProductIndex = await deleteOneProductCart(email, idp);
     if (deleteProductIndex !== null) {
       return responseSuccess(req, res, null, 200, deleteProductIndex);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Product Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
