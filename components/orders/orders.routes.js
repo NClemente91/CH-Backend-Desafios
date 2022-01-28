@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-//MIDDLEWARE
+//Middlewares
 const { validateId } = require("../../middleware/validate-id");
+const { validateStateOrder } = require("../../middleware/validate-order");
 
-//CONTROLLERS
+//Controllers
 const {
   allOrdersUser,
   oneOrderUser,
@@ -13,11 +14,11 @@ const {
   deleteOrder,
 } = require("./orders.controller");
 
-//RUTAS
+//Routes
 router.get("/list", allOrdersUser);
 router.get("/list/:id_order", validateId, oneOrderUser);
 router.post("/add", addOrder);
-router.put("/update/:id_order", validateId, updateOrder);
+router.put("/update/:id_order", [validateId, validateStateOrder], updateOrder);
 router.delete("/delete/:id_order", validateId, deleteOrder);
 
 module.exports = router;

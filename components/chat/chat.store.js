@@ -1,33 +1,30 @@
 const Chat = require("./chat.model");
 
+//Function that returns the messages of a user in MongoDB
 const findMessagesUser = async (email) => {
   try {
     const messages = await Chat.find({ email, typeUser: "user" });
     if (!messages) {
       return null;
-    } else {
-      return messages;
     }
+    return messages;
   } catch (error) {
-    throw new Error("Error al listar los mensajes de chat de un usuario");
+    throw new Error("Error searching for a user's messages");
   }
 };
 
+//Function to add a message to MongoDB
 const addOneMessage = async (email, type, message) => {
   try {
-    if (email && type && message) {
-      const newMessage = {
-        email,
-        typeUser: type,
-        message,
-      };
-      const addMessage = await Chat.create(newMessage);
-      return addMessage;
-    } else {
-      return null;
-    }
+    const newMessage = {
+      email,
+      typeUser: type,
+      message,
+    };
+    const addMessage = await Chat.create(newMessage);
+    return addMessage;
   } catch (error) {
-    throw new Error("Error al guardar un mensaje de chat de un usuario");
+    throw new Error("Error adding a message");
   }
 };
 

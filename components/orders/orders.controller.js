@@ -9,18 +9,21 @@ const {
   deleteOneOrder,
 } = require("./orders.store");
 
-//PARA LISTAR TODOS LAS ORDENES DEL USUARIO
+//Show all orders of a user
 const allOrdersUser = async (req, res) => {
   try {
     const email = req.user.email;
     const orders = await findAllOrdersUser(email);
-    return responseSuccess(req, res, null, 200, orders);
+    if (orders !== null) {
+      return responseSuccess(req, res, null, 200, orders);
+    }
+    return responseError(req, res, "Orders not found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA LISTAR UNA ORDEN DE UN USUARIO
+//Shows an order from a user
 const oneOrderUser = async (req, res) => {
   try {
     const email = req.user.email;
@@ -28,15 +31,14 @@ const oneOrderUser = async (req, res) => {
     const order = await findOneOrderUser(email, ido);
     if (order !== null) {
       return responseSuccess(req, res, null, 200, order);
-    } else {
-      return responseError(req, res, "Order Not Found", 404);
     }
+    return responseError(req, res, "Order Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA INGRESAR UNA ORDEN
+//Allows you to generate an order through a shopping cart
 const addOrder = async (req, res) => {
   try {
     const email = req.user.email;
@@ -45,15 +47,14 @@ const addOrder = async (req, res) => {
       const { email, address, state } = order;
       emailOrder(email, address, state);
       return responseSuccess(req, res, null, 200, order);
-    } else {
-      return responseError(req, res, "Cart Not Found", 404);
     }
+    return responseError(req, res, "Cart Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA MODIFICAR EL ESTADO DE UNA ORDEN
+//Allows you to modify the state of an order
 const updateOrder = async (req, res) => {
   try {
     const email = req.user.email;
@@ -62,15 +63,14 @@ const updateOrder = async (req, res) => {
     const updateOrder = await updateOneOrder(email, ido, state);
     if (updateOrder !== null) {
       return responseSuccess(req, res, null, 200, updateOrder);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Order Not Found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
 };
 
-//PARA BORRAR UNA ORDEN
+//Allows you to remove an order
 const deleteOrder = async (req, res) => {
   try {
     const email = req.user.email;
@@ -78,11 +78,10 @@ const deleteOrder = async (req, res) => {
     const deleteOrder = await deleteOneOrder(email, ido);
     if (deleteOrder !== null) {
       return responseSuccess(req, res, null, 200, null);
-    } else {
-      return responseError(req, res, "Product Not Found", 404);
     }
+    return responseError(req, res, "Order Not Found", 404);
   } catch (error) {
-    return responseError(req, res, "Internal Server Error", 500);
+    return responseError(req, res, error.message, 500);
   }
 };
 

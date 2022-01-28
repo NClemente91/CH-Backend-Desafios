@@ -6,9 +6,8 @@ const findAllProducts = async () => {
     const products = await Product.find();
     if (!products) {
       return null;
-    } else {
-      return products;
     }
+    return products;
   } catch (error) {
     throw new Error("Error searching all available products");
   }
@@ -20,9 +19,8 @@ const findOneProductbyID = async (idp) => {
     const product = await Product.findById(idp);
     if (!product) {
       return null;
-    } else {
-      return product;
     }
+    return product;
   } catch (error) {
     throw new Error("Error searching for a product by id");
   }
@@ -49,7 +47,6 @@ const createOneProduct = async (prod) => {
       ...prod,
       code: Math.floor(Math.random() * (999 - 1)) + 1,
     };
-    console.log(newProduct);
     const addProduct = await Product.create(newProduct);
     return addProduct;
   } catch (error) {
@@ -79,10 +76,9 @@ const deleteOneProductbyID = async (idp) => {
   try {
     const productDelete = await Product.deleteOne({ _id: idp });
     if (productDelete.deletedCount === 1) {
-      return await Product.find();
-    } else {
-      return null;
+      return;
     }
+    return null;
   } catch (error) {
     throw new Error("Error removing a product");
   }

@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-//CONTROLLERS
+//Middleware
+const { validateAddMessageChat } = require("../../middleware/validate-chat");
+
+//Controllers
 const { allMessages, addMessage } = require("./chat.controller");
 
-//RUTAS
+//Routes
 router.get("/", allMessages);
-router.post("/", addMessage);
+router.post("/", validateAddMessageChat, addMessage);
 
 module.exports = router;

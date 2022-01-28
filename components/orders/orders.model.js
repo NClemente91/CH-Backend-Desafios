@@ -41,6 +41,7 @@ const OrderSchema = Schema(
   }
 );
 
+//Method to modify the data output
 OrderSchema.methods.toJSON = function () {
   const { updatedAt, ...cart } = this.toObject();
   return cart;

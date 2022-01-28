@@ -21,7 +21,7 @@ const validateAddProduct = async (req, res, next) => {
     productName: Joi.string().required(),
     description: Joi.string().required(),
     photo: Joi.string().required(),
-    price: Joi.number().required(),
+    price: Joi.number().positive().required(),
     stock: Joi.number().required(),
     category: Joi.string().required(),
   });

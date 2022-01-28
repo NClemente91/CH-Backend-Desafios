@@ -30,7 +30,7 @@ const oneProduct = async (req, res) => {
     if (product !== null) {
       return responseSuccess(req, res, null, 200, product);
     }
-    return responseError(req, res, "Product Not Found", 404);
+    return responseError(req, res, "Product not found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
@@ -43,9 +43,8 @@ const categoryProducts = async (req, res) => {
     let products = await findProductsbyCategory(category);
     if (products !== null) {
       return responseSuccess(req, res, null, 200, products);
-    } else {
-      return responseError(req, res, "Products or Category Not Found", 404);
     }
+    return responseError(req, res, "Products not found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
@@ -68,9 +67,8 @@ const updateProduct = async (req, res) => {
     const productUpdate = await updateOneProductbyID(idp, req.body);
     if (productUpdate !== null) {
       return responseSuccess(req, res, null, 200, productUpdate);
-    } else {
-      return responseError(req, res, "Product or Data not found", 404);
     }
+    return responseError(req, res, "Product not found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }
@@ -83,9 +81,8 @@ const deleteProduct = async (req, res) => {
     const productDelete = await deleteOneProductbyID(idp);
     if (productDelete !== null) {
       return responseSuccess(req, res, null, 200, productDelete);
-    } else {
-      return responseError(req, res, "Product not found", 404);
     }
+    return responseError(req, res, "Product not found", 404);
   } catch (error) {
     return responseError(req, res, error.message, 500);
   }

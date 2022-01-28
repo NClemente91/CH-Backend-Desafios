@@ -1,21 +1,20 @@
 const Cart = require("../cart/cart.model");
 const Order = require("./orders.model");
 
-//METODO PARA LISTAR TODAS LAS ORDENES DE UN USUARIO
+//Function that returns all the orders of a user in MongoDB
 const findAllOrdersUser = async (email) => {
   try {
     const orders = await Order.find({ email });
     if (!orders) {
       return null;
-    } else {
-      return orders;
     }
+    return orders;
   } catch (error) {
-    throw new Error("Error al encontrar todas las ordenes de compra");
+    throw new Error("Error finding all purchase orders");
   }
 };
 
-//METODO PARA LISTAR UNA ORDEN DE UN USUARIO POR SU ID
+//Function that returns a purchase order from a user in MongoDB
 const findOneOrderUser = async (email, ido) => {
   try {
     const order = await Order.find({ email, _id: ido }).populate({
@@ -24,15 +23,14 @@ const findOneOrderUser = async (email, ido) => {
     });
     if (!order) {
       return null;
-    } else {
-      return order[0];
     }
+    return order[0];
   } catch (error) {
-    throw new Error("Error al listar una orden de compra");
+    throw new Error("Error searching for a purchase order");
   }
 };
 
-//METODO PARA INCORPORAR UNA ORDEN
+//Function to add a purchase order to MongoDB
 const addOneOrder = async (email) => {
   try {
     const cart = await Cart.find({ email });
@@ -42,38 +40,50 @@ const addOneOrder = async (email) => {
         email,
         products,
         address,
+      }).populate({
+        path: "products",
+        populate: { path: "_id", select: "productName price" },
       });
-      //BORRAMOS EL CARRITO UNA VEZ GENERADA LA ORDEN
+      //We delete the shopping cart once the order has been generated
       await Cart.findOneAndDelete({ email });
       return newOrder;
     }
     return null;
   } catch (error) {
-    throw new Error("Error al generar la orden");
+    throw new Error("Error generating the order");
   }
 };
 
-//METODO PARA MODIFICAR EL ESTADO UNA ORDEN
+//Function that updates a purchase order in MongoDB
 const updateOneOrder = async (email, ido, state) => {
   try {
     const orderUpdate = await Order.findByIdAndUpdate(
       { email, _id: ido },
       { state },
       { new: true }
-    );
+    ).populate({
+      path: "products",
+      populate: { path: "_id", select: "productName price" },
+    });
+    if (!orderUpdate) {
+      return null;
+    }
     return orderUpdate;
   } catch (error) {
-    throw new Error("Error al actualizar el estado de la orden");
+    throw new Error("Error updating order status");
   }
 };
 
-//METODO PARA BORRAR UNA ORDEN
+//Function that deletes a purchase order in MongoDB
 const deleteOneOrder = async (email, ido) => {
   try {
     const orderDelete = await Order.findByIdAndDelete({ email, _id: ido });
-    return orderDelete;
+    if (orderDelete.deletedCount === 1) {
+      return;
+    }
+    return null;
   } catch (error) {
-    throw new Error("Error al borrar una orden");
+    throw new Error("Error deleting a purchase order");
   }
 };
 

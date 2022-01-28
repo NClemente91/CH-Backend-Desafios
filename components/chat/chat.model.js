@@ -22,6 +22,7 @@ const ChatSchema = Schema(
   }
 );
 
+//Method to modify the data output
 ChatSchema.methods.toJSON = function () {
   const { updatedAt, ...chat } = this.toObject();
   return chat;
