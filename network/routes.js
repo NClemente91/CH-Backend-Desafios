@@ -5,10 +5,10 @@ const chatsRoutes = require("../components/chat/chat.routes");
 const usersRoutes = require("../components/users/users.routes");
 const errorRoutes = require("../components/error/error.routes");
 
-//MIDDLEWARES
+//Middlewares
 const { authenticateToken } = require("../middleware/validate-auth");
 
-//GENERAL ROUTES
+//General routes
 const routes = (server) => {
   server.use("/products", authenticateToken, productsRoutes);
   server.use("/cart", authenticateToken, cartRoutes);

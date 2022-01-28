@@ -1,4 +1,4 @@
-const { loggerInfo, loggerWarn, loggerError } = require("../configs/loggers");
+const { loggerInfo, loggerError } = require("../configs/loggers");
 
 const responseSuccess = (req, res, message, status, data) => {
   let statusCode = status;

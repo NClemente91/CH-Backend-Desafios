@@ -5,7 +5,6 @@ const { loggerInfo, loggerError } = require("./loggers");
 
 const dbConnection = async () => {
   try {
-    //CAMBIAR EL LINK
     await mongoose.connect(config.MONGO_URL);
     loggerInfo.info("BD Conectada");
   } catch (error) {

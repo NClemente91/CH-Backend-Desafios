@@ -29,7 +29,7 @@ app.set("views", "./views");
 
 initWsServer(server);
 
-//MASTER
+//Master
 if (config.FORKORCLUSTER === "CLUSTER" && cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -45,7 +45,7 @@ if (config.FORKORCLUSTER === "CLUSTER" && cluster.isMaster) {
     cluster.fork();
   });
 } else {
-  //WORKERS
+  //Workers
   router(app);
 
   server.listen(config.PORT, () => {

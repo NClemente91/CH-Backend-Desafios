@@ -1,6 +1,6 @@
 const Io = require("socket.io");
 const { loggerInfo, loggerError } = require("./loggers");
-const Chat = require("../components/chat/chat.model");
+// const Chat = require("../components/chat/chat.model");
 
 const initWsServer = (server) => {
   const io = Io(server);

@@ -5,6 +5,8 @@ const router = express.Router();
 const { validateId } = require("../../middleware/validate-id");
 const {
   validateRegisterUser,
+  validateDuplicateUser,
+  validateSignInUser,
   validateUpdateUser,
 } = require("../../middleware/validate-user");
 const {
@@ -23,8 +25,12 @@ const {
 } = require("./users.controller");
 
 //Routes
-router.post("/signup", [validateRegisterUser, authenticateSignUp], signUp);
-router.post("/signin", authenticateSignIn, signIn);
+router.post(
+  "/signup",
+  [validateRegisterUser, validateDuplicateUser, authenticateSignUp],
+  signUp
+);
+router.post("/signin", [validateSignInUser, authenticateSignIn], signIn);
 router.post("/logout", logout);
 router.put(
   "/user/update/:_id",

@@ -1,5 +1,19 @@
 const User = require("./users.model");
 
+//Function that returns an user by its email and username in MongoDB
+const findDuplicateUser = async (email, username) => {
+  try {
+    const userEmailExist = await User.find({ email });
+    const userUsernameExist = await User.find({ username });
+    if (userEmailExist.length !== 0 || userUsernameExist.length !== 0) {
+      return true;
+    }
+    return null;
+  } catch (error) {
+    throw new Error("Error searching for an user");
+  }
+};
+
 //Function that returns an user by its email in MongoDB
 const findOneUser = async (email) => {
   try {
@@ -16,7 +30,7 @@ const findOneUser = async (email) => {
 //Function to add an user to MongoDB
 const createOneUser = async (user) => {
   try {
-    const newUser = await Product.create(user);
+    const newUser = await User.create(user);
     return newUser;
   } catch (error) {
     throw new Error("Error adding an user");
@@ -54,6 +68,7 @@ const deleteOneUserbyID = async (idu) => {
 };
 
 module.exports = {
+  findDuplicateUser,
   findOneUser,
   createOneUser,
   updateOneUserbyID,

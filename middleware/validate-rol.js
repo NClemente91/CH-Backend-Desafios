@@ -2,7 +2,7 @@ const { responseError } = require("../network/response");
 
 const administrador = true;
 
-//VALIDAMOS EL ROL
+//We validate the rol of the user
 const validateRol = (req, res, next) => {
   try {
     if (administrador) {
