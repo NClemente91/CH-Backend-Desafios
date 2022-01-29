@@ -5,7 +5,10 @@ const { responseError } = require("../network/response");
 //We validate that the id is an objectid
 const validateId = async (req, res, next) => {
   const schema = Joi.object({
-    _id: Joi.objectId().required(),
+    _id: Joi.objectId(),
+    id_productCart: Joi.objectId(),
+    id_product: Joi.objectId(),
+    id_order: Joi.objectId(),
   });
 
   try {

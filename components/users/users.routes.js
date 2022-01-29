@@ -17,6 +17,7 @@ const { validateRol } = require("../../middleware/validate-rol");
 
 //Controllers
 const {
+  allUsers,
   signUp,
   signIn,
   logout,
@@ -25,6 +26,7 @@ const {
 } = require("./users.controller");
 
 //Routes
+router.get("/list", validateRol, allUsers);
 router.post(
   "/signup",
   [validateRegisterUser, validateDuplicateUser, authenticateSignUp],

@@ -1,5 +1,18 @@
 const User = require("./users.model");
 
+//Function that returns the users in MongoDB
+const findAllUsers = async () => {
+  try {
+    const users = await User.find();
+    if (users.length === 0) {
+      return null;
+    }
+    return users;
+  } catch (error) {
+    throw new Error("Error searching all users");
+  }
+};
+
 //Function that returns an user by its email and username in MongoDB
 const findDuplicateUser = async (email, username) => {
   try {
@@ -18,7 +31,7 @@ const findDuplicateUser = async (email, username) => {
 const findOneUser = async (email) => {
   try {
     const user = await User.find({ email });
-    if (!user) {
+    if (user.length === 0) {
       return null;
     }
     return user[0];
@@ -68,6 +81,7 @@ const deleteOneUserbyID = async (idu) => {
 };
 
 module.exports = {
+  findAllUsers,
   findDuplicateUser,
   findOneUser,
   createOneUser,

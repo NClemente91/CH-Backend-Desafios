@@ -9,6 +9,8 @@ const {
   deleteOneProductCart,
 } = require("./cart.store");
 
+const { findOneProductbyID } = require("../products/products.store");
+
 //Show all available carts (Only available for administrator)
 const allCarts = async (req, res) => {
   try {
@@ -58,8 +60,9 @@ const addProductCart = async (req, res) => {
     const idp = req.params.id_product;
     const qty = req.body.quantity;
     const address = req.user.address;
-    const addProduct = await addOneProductCart(email, idp, qty, address);
-    if (addProduct !== null) {
+    const verifyExistProduct = await findOneProductbyID(idp);
+    if (verifyExistProduct !== null) {
+      const addProduct = await addOneProductCart(email, idp, qty, address);
       return responseSuccess(req, res, null, 200, addProduct);
     }
     return responseError(req, res, "Product Not Found", 404);

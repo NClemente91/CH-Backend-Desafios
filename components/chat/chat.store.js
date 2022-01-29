@@ -4,7 +4,7 @@ const Chat = require("./chat.model");
 const findMessagesUser = async (email) => {
   try {
     const messages = await Chat.find({ email, typeUser: "user" });
-    if (!messages) {
+    if (messages.length === 0) {
       return null;
     }
     return messages;

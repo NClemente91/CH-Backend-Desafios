@@ -4,7 +4,24 @@ const { emailRegister } = require("../../configs/node-gmail");
 
 const { responseSuccess, responseError } = require("../../network/response");
 
-const { updateOneUserbyID, deleteOneUserbyID } = require("./users.store");
+const {
+  findAllUsers,
+  updateOneUserbyID,
+  deleteOneUserbyID,
+} = require("./users.store");
+
+//Show all users (Only available for administrator)
+const allUsers = async (req, res) => {
+  try {
+    const users = await findAllUsers();
+    if (users !== null) {
+      return responseSuccess(req, res, null, 200, users);
+    }
+    return responseError(req, res, "Users not found", 404);
+  } catch (error) {
+    return responseError(req, res, error.message, 500);
+  }
+};
 
 //Allows you to register a new user
 const signUp = (req, res) => {
@@ -84,6 +101,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
+  allUsers,
   signUp,
   signIn,
   logout,

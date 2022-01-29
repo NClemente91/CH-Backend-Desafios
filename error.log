@@ -1,0 +1,30 @@
+[2022-01-29T10:34:37.106] [ERROR] error - Response error Orders not found
+[2022-01-29T18:02:46.987] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  not found
+[2022-01-29T18:24:49.086] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:24:57.782] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:25:31.082] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:27:07.354] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:30:16.750] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:32:23.046] [ERROR] error - Response error "_id" is required
+[2022-01-29T18:43:10.073] [ERROR] error - Response error Ruta localhost:8080/cart/add Metodo POST  not found
+[2022-01-29T18:43:15.252] [ERROR] error - Response error Ruta localhost:8080/cart/add/ Metodo POST  not found
+[2022-01-29T18:53:36.722] [ERROR] error - Response error Error searching for a product by id
+[2022-01-29T18:55:06.943] [ERROR] error - Response error Error searching for a product by id
+[2022-01-29T18:56:04.049] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:01:45.932] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:02:01.014] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:03:41.171] [ERROR] error - Response error "id_productCart" with value "61e5df8571030ab518214f" fails to match the valid mongo id pattern
+[2022-01-29T19:03:55.385] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:05:40.634] [ERROR] error - Response error Carts Not Found
+[2022-01-29T19:06:04.077] [ERROR] error - Response error Error searching for a product by its id in a shopping cart
+[2022-01-29T19:06:16.996] [ERROR] error - Response error "id_productCart" with value "61e5df8571030ab518214f9" fails to match the valid mongo id pattern
+[2022-01-29T19:06:29.273] [ERROR] error - Response error Products Not Found
+[2022-01-29T19:06:39.097] [ERROR] error - Response error Products Not Found
+[2022-01-29T19:07:45.439] [ERROR] error - Response error Products Not Found
+[2022-01-29T19:08:05.322] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:08:36.941] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:09:10.049] [ERROR] error - Response error "id_product" with value "61e5dff671030ab518214f8" fails to match the valid mongo id pattern
+[2022-01-29T19:09:15.026] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:09:35.721] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:09:55.123] [ERROR] error - Response error Product Not Found
+[2022-01-29T19:09:59.079] [ERROR] error - Response error "id_product" with value "61e5dff671030ab518214f" fails to match the valid mongo id pattern

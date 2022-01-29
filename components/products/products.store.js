@@ -4,7 +4,7 @@ const Product = require("./products.model");
 const findAllProducts = async () => {
   try {
     const products = await Product.find();
-    if (!products) {
+    if (products.length === 0) {
       return null;
     }
     return products;
@@ -30,7 +30,7 @@ const findOneProductbyID = async (idp) => {
 const findProductsbyCategory = async (cat) => {
   try {
     const products = await Product.find();
-    if (!products) {
+    if (products.length === 0) {
       return null;
     }
     catProducts = products.filter((p) => p.category === cat);

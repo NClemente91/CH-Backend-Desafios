@@ -5,7 +5,7 @@ const Order = require("./orders.model");
 const findAllOrdersUser = async (email) => {
   try {
     const orders = await Order.find({ email });
-    if (!orders) {
+    if (orders.length === 0) {
       return null;
     }
     return orders;
@@ -21,7 +21,7 @@ const findOneOrderUser = async (email, ido) => {
       path: "products",
       populate: { path: "_id", select: "productName price" },
     });
-    if (!order) {
+    if (order.length === 0) {
       return null;
     }
     return order[0];

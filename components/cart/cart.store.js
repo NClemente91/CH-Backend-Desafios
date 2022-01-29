@@ -4,7 +4,7 @@ const Cart = require("./cart.model");
 const findAllCarts = async () => {
   try {
     const carts = await Cart.find();
-    if (!carts) {
+    if (carts.length === 0) {
       return null;
     } else {
       return carts;
@@ -21,7 +21,7 @@ const findAllProductsCart = async (email) => {
       path: "products",
       populate: { path: "_id", select: "productName price" },
     });
-    if (!cart) {
+    if (cart.length === 0) {
       return null;
     } else {
       return cart[0].products;
@@ -35,7 +35,7 @@ const findAllProductsCart = async (email) => {
 const findOneProductCart = async (email, idp) => {
   try {
     const cart = await Cart.find({ email });
-    if (cart[0].products.length !== 0) {
+    if (cart.length !== 0) {
       const prodCart = cart[0].products.find((p) => p._id.toString() === idp);
       if (prodCart) {
         return prodCart;
