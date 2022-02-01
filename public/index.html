@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
-    <title>Chat Proyecto Final</title>
+    <title>Proyecto Final</title>
   </head>
   <body>
     <div class="container-form">
       <div class="contenedor mt-5">
+        <div class="mt-2" id="messages"></div>
         <div>
-          <h2 class="title-product mt-3">Central de Mensajes</h2>
+          <h2 class="title-chat mt-3">Chat</h2>
           <div>
             <div class="mb-3">
               <input
                 type="email"
-                name="username"
+                name="email"
                 class="form-control"
-                id="username"
-                placeholder="Tu Nombre"
+                id="email"
+                placeholder="Ingresa un email válido"
                 required
               />
             </div>
@@ -30,7 +31,7 @@
                 name="texto"
                 class="form-control"
                 id="texto"
-                placeholder="Cuéntanos algo..."
+                placeholder="Escribe tu consulta..."
                 required
               />
             </div>
@@ -44,10 +45,13 @@
             </button>
           </div>
         </div>
-        <div class="mt-2" id="messages"></div>
       </div>
     </div>
     <script src="./ejs.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"
+      charset="utf-8"
+    ></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./index.js"></script>
   </body>

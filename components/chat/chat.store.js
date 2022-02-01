@@ -3,7 +3,7 @@ const Chat = require("./chat.model");
 //Function that returns the messages of a user in MongoDB
 const findMessagesUser = async (email) => {
   try {
-    const messages = await Chat.find({ email, typeUser: "user" });
+    const messages = await Chat.find({ email });
     if (messages.length === 0) {
       return null;
     }

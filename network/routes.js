@@ -13,7 +13,7 @@ const routes = (server) => {
   server.use("/products", authenticateToken, productsRoutes);
   server.use("/cart", authenticateToken, cartRoutes);
   server.use("/order", authenticateToken, ordersRoutes);
-  server.use("/chat", authenticateToken, chatsRoutes);
+  server.use("/chat", chatsRoutes);
   server.use("/", usersRoutes);
   server.use("*", errorRoutes);
 };

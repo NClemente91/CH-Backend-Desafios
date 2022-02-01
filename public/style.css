@@ -1,74 +1,13 @@
-.container-form,
-.containerLogin,
-.containerLogout {
+.container-form {
   width: 600px;
   margin: 20px auto;
   background: rgb(189, 186, 186);
-}
-
-.container-login {
-  display: flex;
-  justify-content: space-between;
-}
-
-.contenedor {
-  width: 90%;
-  margin: 0 auto;
 }
 
 .container-form {
   padding: 20px;
 }
 
-.title-product,
-.title-vista {
+.title-chat {
   text-align: center;
-}
-
-.title-vista {
-  padding-top: 10px;
-  color: white;
-  font-size: 30px;
-  background: #212529;
-  height: 60px;
-}
-
-.img-producto {
-  width: 100px;
-  height: 100px;
-}
-
-.table-format {
-  text-align: center;
-}
-
-.no-prod {
-  width: 80%;
-  height: 50px;
-  margin: 15px auto;
-  font-size: 20px;
-}
-
-.author {
-  font-weight: 700;
-  color: blue;
-}
-.hora {
-  font-weight: 400;
-  color: brown;
-}
-.text {
-  font-style: italic;
-  font-weight: 400;
-  color: green;
-}
-
-.img {
-  width: 50px;
-  height: 50px;
-}
-
-.containerLogin {
-  padding-top: 30px;
-  padding-bottom: 30px;
 }

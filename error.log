@@ -1,30 +1,60 @@
-[2022-01-29T10:34:37.106] [ERROR] error - Response error Orders not found
-[2022-01-29T18:02:46.987] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  not found
-[2022-01-29T18:24:49.086] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:24:57.782] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:25:31.082] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:27:07.354] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:30:16.750] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:32:23.046] [ERROR] error - Response error "_id" is required
-[2022-01-29T18:43:10.073] [ERROR] error - Response error Ruta localhost:8080/cart/add Metodo POST  not found
-[2022-01-29T18:43:15.252] [ERROR] error - Response error Ruta localhost:8080/cart/add/ Metodo POST  not found
-[2022-01-29T18:53:36.722] [ERROR] error - Response error Error searching for a product by id
-[2022-01-29T18:55:06.943] [ERROR] error - Response error Error searching for a product by id
-[2022-01-29T18:56:04.049] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:01:45.932] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:02:01.014] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:03:41.171] [ERROR] error - Response error "id_productCart" with value "61e5df8571030ab518214f" fails to match the valid mongo id pattern
-[2022-01-29T19:03:55.385] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:05:40.634] [ERROR] error - Response error Carts Not Found
-[2022-01-29T19:06:04.077] [ERROR] error - Response error Error searching for a product by its id in a shopping cart
-[2022-01-29T19:06:16.996] [ERROR] error - Response error "id_productCart" with value "61e5df8571030ab518214f9" fails to match the valid mongo id pattern
-[2022-01-29T19:06:29.273] [ERROR] error - Response error Products Not Found
-[2022-01-29T19:06:39.097] [ERROR] error - Response error Products Not Found
-[2022-01-29T19:07:45.439] [ERROR] error - Response error Products Not Found
-[2022-01-29T19:08:05.322] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:08:36.941] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:09:10.049] [ERROR] error - Response error "id_product" with value "61e5dff671030ab518214f8" fails to match the valid mongo id pattern
-[2022-01-29T19:09:15.026] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:09:35.721] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:09:55.123] [ERROR] error - Response error Product Not Found
-[2022-01-29T19:09:59.079] [ERROR] error - Response error "id_product" with value "61e5dff671030ab518214f" fails to match the valid mongo id pattern
+
+[2022-02-01T14:08:27.849] [ERROR] error - Response error Unauthorized access
+[2022-02-01T14:08:27.931] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  not found
+[2022-02-01T14:08:45.307] [ERROR] error - Response error Unauthorized access
+[2022-02-01T14:09:26.233] [ERROR] error - Response error Unauthorized access
+[2022-02-01T14:09:27.424] [ERROR] error - Response error Unauthorized access
+[2022-02-01T14:10:01.284] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:11:06.105] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:11:08.181] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:11:53.923] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:11:55.218] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:12:11.382] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:12:12.307] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:12:25.534] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:12:26.401] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:13:03.097] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:14:06.087] [ERROR] error - Response error "typeUser" is required
+[2022-02-01T14:14:22.605] [ERROR] error - Response error "typeUser" is required
+[2022-02-01T14:15:24.998] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T14:15:55.846] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:24:21.017] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:27:17.920] [ERROR] error - Response error Error searching for a user's messages
+[2022-02-01T15:27:51.677] [ERROR] error - Response error Messages not found
+[2022-02-01T15:28:05.432] [ERROR] error - Response error Messages not found
+[2022-02-01T15:28:49.428] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:28:57.656] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:04.289] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:08.168] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:08.697] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:10.629] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:10.672] [ERROR] error - Response error Ruta localhost:8080/favicon.ico Metodo GET  not found
+[2022-02-01T15:29:14.089] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:29:58.971] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:00.216] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:01.158] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:01.694] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:02.263] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:02.446] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:02.630] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:02.822] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:03.006] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:03.174] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:09.101] [ERROR] error - Response error Cannot read property 'email' of undefined
+[2022-02-01T15:30:52.494] [ERROR] error - Response error Messages not found
+[2022-02-01T15:49:59.948] [ERROR] error - Response error Unauthorized access
+[2022-02-01T15:50:16.603] [ERROR] error - Response error Unauthorized access
+[2022-02-01T16:05:28.366] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:06:11.078] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:14:55.247] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:15:23.230] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:25:38.200] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:25:45.391] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:28:24.562] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:29:39.744] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:32:16.641] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:50:49.972] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T16:50:53.622] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T17:14:40.259] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T17:36:37.682] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
+[2022-02-01T17:41:38.232] [ERROR] error - Response error Ruta localhost:8080/bootstrap/bootstrap.min.css.map Metodo GET  not found
