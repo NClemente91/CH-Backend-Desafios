@@ -1,4 +1,5 @@
 const socket = io();
+const socket = io({ transports: ["websocket"] });
 
 socket.on("connect", () => {
   console.log("Usuario conectado: " + socket.id);
