@@ -6,7 +6,7 @@ const { findMessagesUser, addOneMessage } = require("./chat.store");
 const allMessages = async (req, res) => {
   try {
     //If you want to use the endpoit with another frontend comment this line and uncomment the lines below
-    res.sendFile(process.cwd() + "/public/index.html");
+    res.sendFile(process.cwd() + "/public/chat.html");
     // const email = req.user.email;
     // const messages = await findMessagesUser(email);
     // if (messages !== null) {
