@@ -36,20 +36,19 @@ const addOneOrder = async (email) => {
     const cart = await Cart.find({ email });
     if (cart.length !== 0) {
       const { products, address } = cart[0];
-      const newOrder = await Order.create({
+      const newOrder = new Order({
         email,
         products,
         address,
-      }).populate({
-        path: "products",
-        populate: { path: "_id", select: "productName price" },
       });
+      const saveNewOrder = await newOrder.save();
       //We delete the shopping cart once the order has been generated
       await Cart.findOneAndDelete({ email });
-      return newOrder;
+      return saveNewOrder;
     }
     return null;
   } catch (error) {
+    console.log(error.message);
     throw new Error("Error generating the order");
   }
 };

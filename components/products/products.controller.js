@@ -80,7 +80,7 @@ const deleteProduct = async (req, res) => {
     const idp = req.params._id;
     const productDelete = await deleteOneProductbyID(idp);
     if (productDelete !== null) {
-      return responseSuccess(req, res, null, 200, productDelete);
+      return responseSuccess(req, res, null, 200, null);
     }
     return responseError(req, res, "Product not found", 404);
   } catch (error) {

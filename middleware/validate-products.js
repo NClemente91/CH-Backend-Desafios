@@ -4,7 +4,7 @@ const { responseError } = require("../network/response");
 //We validate that the category exists
 const validateCategory = async (req, res, next) => {
   const schema = Joi.object({
-    category: Joi.string().valid("frutas", "verduras"),
+    _category: Joi.string().valid("frutas", "verduras"),
   });
 
   try {

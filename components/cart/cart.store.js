@@ -3,7 +3,10 @@ const Cart = require("./cart.model");
 //Function that returns all shopping carts in MongoDB
 const findAllCarts = async () => {
   try {
-    const carts = await Cart.find();
+    const carts = await Cart.find().populate({
+      path: "products",
+      populate: { path: "_id", select: "productName price" },
+    });
     if (carts.length === 0) {
       return null;
     } else {
@@ -34,9 +37,14 @@ const findAllProductsCart = async (email) => {
 //Function that returns a product by its id from a shopping cart in MongoDB
 const findOneProductCart = async (email, idp) => {
   try {
-    const cart = await Cart.find({ email });
+    const cart = await Cart.find({ email }).populate({
+      path: "products",
+      populate: { path: "_id", select: "productName price" },
+    });
     if (cart.length !== 0) {
-      const prodCart = cart[0].products.find((p) => p._id.toString() === idp);
+      const prodCart = cart[0].products.find(
+        (p) => p._id._id.toString() === idp
+      );
       if (prodCart) {
         return prodCart;
       }
