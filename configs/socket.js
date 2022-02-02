@@ -66,7 +66,7 @@ const messageController = async (message, user) => {
       let messageDefault = [];
       messageDefault = [
         {
-          email: "system@system.com",
+          email: user,
           typeUser: "system",
           message:
             "Por favor, ingrese STOCK para ver el stock de nuestros productos, ingrese CART para ver los productos cargados y su precio o ingrese ORDEN si usted ya ha realizado orden y desea saber su estado",
