@@ -77,7 +77,9 @@ const messageController = async (message, user) => {
 };
 
 const initWsServer = (server) => {
-  const io = Io(server);
+  const io = Io(server, {
+    transports: ["websocket"],
+  });
 
   //Websocket connection
   io.on("connection", async (socket) => {
